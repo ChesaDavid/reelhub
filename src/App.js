@@ -1,24 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter , Route, Routes,  } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Navbar  from './components/Navbar';
+import Footer from './components/Footer';
+import AboutUs from './pages/AboutUsPage';
+import Contact from './pages/ContactUs';
+import VideoRevlame from './pages/reclameVideo';
+import Login from './pages/Login';
+import Movies from './pages/Movies';
+import Error from './pages/404';
+import ChosenMovie from './pages/ChosenMovie';
+import Register from './pages/Register';
+import TopIMBD from './pages/TopIMBD';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Navbar/>
+      <Routes>
+        <Route path='/' element={<HomePage/>}></Route>
+        <Route path='/contact' element={<Contact/>}></Route>
+        <Route path='/tv-series' element={<Movies/>}></Route>
+        <Route path='/movies/:id' element={<ChosenMovie/>}></Route>
+        <Route path='/tv-series/:id' element={<ChosenMovie/>}></Route>
+        <Route path='/movies' element={<Movies/>}></Route>
+        <Route path='/about' element={<AboutUs/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/top-imdb' element={<TopIMBD/>}></Route>
+        <Route path='*' element={<Error/>}></Route>
+        {/* temporary */}
+        <Route path='/1220' element={<VideoRevlame/>}></Route>
+      </Routes>
+    <Footer/> 
+    </BrowserRouter>
   );
 }
 
