@@ -6,7 +6,6 @@ export default function SearchItems({ searchQuery, onClose }) {
   const [moviesFound, setMoviesFound] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Handle Escape key press
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -25,7 +24,8 @@ export default function SearchItems({ searchQuery, onClose }) {
     const timer = setTimeout(() => {
       const results = Movies.filter((mov) =>
         mov.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mov.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        mov.description?.toLowerCase().includes(searchQuery.toLowerCase()||
+        mov.genre?.some((genre) => genre.toLowerCase().includes(searchQuery.toLowerCase())))
       );
       setMoviesFound(results);
       setIsLoading(false);

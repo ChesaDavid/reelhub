@@ -1,34 +1,70 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import Movies from "./MoviesAndSeriesList";
-import Button from "../components/Button";export default function ChosenMovie() {
+import { app ,db} from "../firebase";
+import { getAuth } from "firebase/auth";
+import { collection, addDoc ,doc,getDoc, setDoc, updateDoc} from "firebase/firestore"; 
+
+export default function ChosenMovie() {
+
   const { id } = useParams();
   const playerRef = useRef(null);
-  const movie = Movies.find((movie) => movie.id == id);
+  const movie = Movies.find((movie) => movie.id === id);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const adCounter = useRef(3);
   const [canPlayVideo, setCanPlayVideo] = useState(false);
   const [showAdButton, setShowAdButton] = useState(true);
   const [isTvShow, setIsTvShow] = useState(false);
   const [seasonsArray, setSeasonsArray] = useState([]);
-  const [selectedSeason,setSelectedSeason] = useState(1);
-  const handleSwitch = () => {
-    if (movie.seasons) {
-      setSeasonsArray(Object.entries(movie.seasons));
+  const [selectedSeason, setSelectedSeason] = useState(1);
+  const ultimulClick = useRef(null);
+  const [selevtedEpisode, setSelectedEpisode] = useState(1);
+  const [genre, setGenre] = useState([]);
+  const [user, setUser] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [documentContent, setDocumentContent] = useState(null);
+  const auth = getAuth(app);
+  useEffect(() => {
+    if (!user) {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          setUser(user);
+          const docRef = doc(db, "favorites", user.uid);
+          const docSnap = getDoc(docRef).then((doc) => {
+            if (doc.exists()) {
+              const userData = doc.data();
+              console.log("User data:", userData);
+              setDocumentContent(userData);
+            }});
+        } else {
+          setUser(null);
+        }
+      });
+      return () => unsubscribe();
     }
-  };
+  }, [user]);
+
+  useEffect(()=>{
+    if(documentContent && documentContent.items){
+      const isFav = documentContent.items.some(item => item === movie.id);
+      setIsFavorite(isFav);
+      console.log("Is favorite:", isFav);
+    }
+  },[movie,documentContent])
 
   useEffect(() => {
     if (movie?.id.toLowerCase().includes("tv")) {
       setIsTvShow(true);
       handleSwitch();
+    } else {
+      setIsTvShow(false);
     }
   }, [movie]);
 
   const ads = [
     "https://dojo.mbd.one/app/coderdojo-@haufe.group/seria-3.2/activitate",
     "https://www.linkedin.com/in/david-chesa-824042296",
-    "http://info.tm.edu.ro/"
+    "http://info.tm.edu.ro/",
   ];
 
   function getYouTubeVideoId(url) {
@@ -37,7 +73,9 @@ import Button from "../components/Button";export default function ChosenMovie() 
     );
     return match ? match[1] : null;
   }
-  const currentSeason = seasonsArray.find(([seasonNumber]) => seasonNumber === selectedSeason);
+  const currentSeason = seasonsArray.find(
+    ([seasonNumber]) => seasonNumber === selectedSeason
+  );
 
   useEffect(() => {
     if (!window.YT && movie?.trailer_url) {
@@ -57,7 +95,7 @@ import Button from "../components/Button";export default function ChosenMovie() 
 
   const createPlayer = () => {
     if (!canPlayVideo) return;
-    
+
     const videoId = getYouTubeVideoId(movie.trailer_url);
     if (!videoId) return;
 
@@ -88,10 +126,106 @@ import Button from "../components/Button";export default function ChosenMovie() 
       window.open(randomAd, "_blank");
       adCounter.current -= 1;
     } else {
+      ultimulClick.current = Date.now();
       setCanPlayVideo(true);
       setShowAdButton(false);
     }
   };
+  useEffect(() => {
+    if (movie?.genre) {
+      setGenre(movie.genre);
+    }
+  }, [movie]);
+
+  const renderRecomandation = (currentGenre) => {
+    const recommendations = Movies.filter(
+      (m) =>
+        m.id !== movie.id &&
+        m.genre?.some((g) => g.toLowerCase() === currentGenre.toLowerCase())
+    ).slice(0, 4);
+
+    if (recommendations.length === 0) {
+      return null;
+    }
+
+    const recommendationComponent = (
+      <div className="mt-10">
+        <h2 className="text-2xl font-bold mb-4">More {currentGenre} titles</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {recommendations.map((rec) => (
+            <Link
+              to={
+                rec.id.includes("MOV")
+                  ? `/movies/${rec.id}`
+                  : `/tv-series/${rec.id}`
+              }
+              key={rec.id}
+            >
+              <div
+                className="bg-gray-800 p-4 rounded-lg shadow-md hover:bg-gray-700 transition-all"
+                role="button"
+                tabIndex={0}
+              >
+                <img
+                  src={rec.thumbnail}
+                  alt={`${rec.title} thumbnail`}
+                  className="w-full h-48 object-cover rounded-lg mb-2"
+                />
+                <h3 className="text-xl font-semibold truncate">{rec.title}</h3>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-yellow-400">★</span>
+                  <span>{rec.imdb_score}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+
+    return recommendationComponent;
+  };
+
+  const handleSwitch = () => {
+    if (movie.seasons) {
+      setSeasonsArray(Object.entries(movie.seasons));
+    }
+  };
+
+  const handleAddToFavorites = async (e)=>{
+    
+    if(!user) return;
+    
+    try{
+      const UserFavRef = doc(db,"favorites",user.uid);
+      const docSnap = await getDoc(UserFavRef);
+      if(docSnap.exists()){
+        if(!isFavorite){
+          const currentFavorites = docSnap.data().items || [];
+          if(!currentFavorites.some(item => item.id===movie.id)){
+          await updateDoc(UserFavRef,{
+            items: [...currentFavorites,movie.id]
+          })
+          setIsFavorite(true);
+          }
+        }else{
+          const currentFavorites = docSnap.data().items || [];
+          const updatedFavorites = currentFavorites.filter(item => item !== movie.id);
+          await updateDoc(UserFavRef,{
+            items: updatedFavorites
+          })
+          setIsFavorite(false);
+        }
+      }else{
+        await setDoc(UserFavRef,{
+          items: [movie.id]
+        })
+      }
+      console.log("Succesfuly uodate the favorites");
+    }catch{
+      console.log("Error with the db");
+    }
+  }
 
   if (!movie) {
     return (
@@ -112,56 +246,97 @@ import Button from "../components/Button";export default function ChosenMovie() 
               alt={`${movie.title} poster`}
               className="w-64 h-96 object-cover rounded-lg shadow-lg"
             />
-          <Button text={"Add to favorites"}></Button>
+            {genre && (
+              <div>
+                <h2 className="text-lg font-semibold">Genres:</h2>
+                {genre.map((element) => {
+                  return (
+                    <span
+                      key={element}
+                      className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full mr-2"
+                    >
+                      {element}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+            <div className="flex items-center gap-2 mt-2">
+              <div>
+                <span className="text-yellow-400">★</span>
+                <span>{movie.imdb_score}</span>
+              </div>
+              {user && (
+                <svg
+                  className="w-6 h-6 text-red-500 transition-transform duration-200 hover:scale-110 cursor-pointer"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill={isFavorite ? "currentColor" : "none"}
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  onClick={handleAddToFavorites}
+                >
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              )}
+            </div>
           </div>
 
           <div className="flex-grow space-y-6">
-            <p className="text-lg text-gray-300 leading-relaxed">{movie.description}</p>
-            {
-              isTvShow &&
-              (
-                <p>Currently showing : {
-                    
-                  }</p>
-              )
-            }
+            <p className="text-lg text-gray-300 leading-relaxed">
+              {movie.description}
+            </p>
+            {/* TODO: TO make the seasons and episodes */}
+            {isTvShow && <p>Currently showing : {
+              (currentSeason && currentSeason[1].episodes) ? `Season ${selectedSeason}, Episode ${selevtedEpisode}` : "Thrailer"
+              }</p>}
             {movie.trailer_url ? (
-                canPlayVideo ? (
-                  <div
-                    id="youtube-player"
-                    className="relative w-full aspect-video rounded-lg overflow-hidden bg-black"
-                  >
-                    {!isPlayerReady && (
-                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900">
-                        <div className="w-12 h-12 border-4 border-t-transparent border-indigo-500 rounded-full animate-spin"></div>
-                        <p className="mt-4 text-gray-300">Loading trailer...</p>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="w-full aspect-video bg-black flex flex-col items-center justify-center">
-                    {showAdButton && (
-                      <>
-                        <button 
-                          onClick={handleAdClick}
-                          className="focus:outline-none transition-transform hover:scale-110 mb-4"
-                        >
-                          <svg 
-                            width="80" 
-                            height="80" 
-                            viewBox="0 0 64 64" 
-                            fill="none" 
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle cx="32" cy="32" r="30" fill="#3B82F6" stroke="#1D4ED8" strokeWidth="2"/>
-                            <path d="M26 22L42 32L26 42V22Z" fill="white"/>
-                          </svg>
-                        </button>
-                      </>
-                    )}
-                  </div>
-                )
+              canPlayVideo ? (
+                <div
+                  id="youtube-player"
+                  className="relative w-full aspect-video rounded-lg overflow-hidden bg-black"
+                >
+                  {!isPlayerReady && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900">
+                      <div className="w-12 h-12 border-4 border-t-transparent border-indigo-500 rounded-full animate-spin"></div>
+                      <p className="mt-4 text-gray-300">Loading trailer...</p>
+                    </div>
+                  )}
+                </div>
               ) : (
+                <div className="w-full aspect-video bg-black flex flex-col items-center justify-center">
+                  <p className="text-gray-300 mb-4">Watch the trailer</p>
+                  {showAdButton && (
+                    <>
+                      <button
+                        onClick={handleAdClick}
+                        className="focus:outline-none transition-transform hover:scale-110 mb-4"
+                      >
+                        <svg
+                          width="80"
+                          height="80"
+                          viewBox="0 0 64 64"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle
+                            cx="32"
+                            cy="32"
+                            r="30"
+                            fill="#3B82F6"
+                            stroke="#1D4ED8"
+                            strokeWidth="2"
+                          />
+                          <path d="M26 22L42 32L26 42V22Z" fill="white" />
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                </div>
+              )
+            ) : (
               <div className="w-full aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
                 <p className="text-gray-400">No trailer available</p>
               </div>
@@ -174,17 +349,19 @@ import Button from "../components/Button";export default function ChosenMovie() 
             <h2 className="text-2xl font-bold mb-4">Seasons</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
               {seasonsArray.map(([seasonNumber, seasonData], index) => (
-                <button 
+                <button
                   key={index}
                   onClick={() => setSelectedSeason(seasonNumber)}
                   className={`p-4 text-center rounded-lg font-semibold transition-all ${
-                    selectedSeason === seasonNumber 
+                    selectedSeason === seasonNumber
                       ? "bg-yellow-500 text-black shadow-lg scale-105"
                       : "bg-gray-800 hover:bg-gray-700"
                   }`}
                 >
                   <p>Season {seasonNumber}</p>
-                  <p className="text-sm text-gray-400">{seasonData.episodes} episodes</p>
+                  <p className="text-sm text-gray-400">
+                    {seasonData.episodes} episodes
+                  </p>
                 </button>
               ))}
             </div>
@@ -198,12 +375,25 @@ import Button from "../components/Button";export default function ChosenMovie() 
               {Array.from({ length: currentSeason[1].episodes }, (_, i) => (
                 <button
                   key={i}
-                  className="bg-gray-700 hover:bg-yellow-500 hover:text-black transition-all p-3 rounded-lg text-center font-medium shadow-md"
+                  onClick={() => setSelectedEpisode(i + 1)}
+                  className={`p-4 text-center rounded-lg font-semibold transition-all ${
+                    selevtedEpisode === i + 1
+                      ? "bg-yellow-500 text-black shadow-lg scale-105"
+                      : "bg-gray-800 hover:bg-gray-700"
+                  }`}
+                  
                 >
                   Episode {i + 1}
                 </button>
               ))}
             </div>
+          </div>
+        )}
+        {genre && (
+          <div className="space-y-8">
+            {genre.map((element) => (
+              <div key={element}>{renderRecomandation(element)}</div>
+            ))}
           </div>
         )}
       </div>

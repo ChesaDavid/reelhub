@@ -13,10 +13,14 @@ import Error from './pages/404';
 import ChosenMovie from './pages/ChosenMovie';
 import Register from './pages/Register';
 import TopIMBD from './pages/TopIMBD';
+import Favorites from './pages/Favorites';
+import Popup from "./components/Popup";
+
 function App() {
   return (
     <BrowserRouter>
     <Navbar/>
+    <Popup/>
       <Routes>
         <Route path='/' element={<HomePage/>}></Route>
         <Route path='/contact' element={<Contact/>}></Route>
@@ -28,6 +32,7 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/top-imdb' element={<TopIMBD/>}></Route>
+        <Route path='/favourites' element={<Favorites/>}></Route>
         <Route path='*' element={<Error/>}></Route>
         {/* temporary */}
         <Route path='/1220' element={<VideoRevlame/>}></Route>

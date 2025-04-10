@@ -1,420 +1,595 @@
 const Movies =  [
-    {
-      "title": "The Godfather",
-      "description": "A crime drama about the powerful Italian-American crime family of Don Vito Corleone.",
-      "id": "MOV001",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=sY1S34973zA",
-      "imdb_score": 9.2,
-      "metascore": 100,
-      "type": "movie"
-    },
-    {
-      "title": "Breaking Bad",
-      "description": "A chemistry teacher turned methamphetamine producer navigates the dangers of the drug trade.",
-      "id": "TV001",
-      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7AUQ1ap545wJq1Op_9GPLFAV15boesLoyZA&s",
-      "trailer_url": "",
-      "imdb_score": 9.5,
-      "metascore": 96,
-      "type": "tv_show",
-      "seasons": {
-        "1": { "episodes": 7, "release_year": 2008, "avg_rating": 8.9 },
-        "2": { "episodes": 13, "release_year": 2009, "avg_rating": 9.1 },
-        "3": { "episodes": 13, "release_year": 2010, "avg_rating": 9.3 },
-        "4": { "episodes": 13, "release_year": 2011, "avg_rating": 9.6 },
-        "5": { "episodes": 16, "release_year": 2012, "avg_rating": 9.7 }
+  {
+    "title": "Breaking Bad",
+    "description": "A chemistry teacher turned methamphetamine producer navigates the dangers of the drug trade.",
+    "id": "TV001",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7AUQ1ap545wJq1Op_9GPLFAV15boesLoyZA&s",
+    "trailer_url": "",
+    "imdb_score": 9.5,
+    "metascore": 96,
+    "type": "tv_show",
+    "genre": ["Crime", "Drama", "Thriller"],
+    "seasons": {
+      "1": {
+        "episode_titles": [
+          "Pilot",
+          "Cat's in the Bag...",
+          "...And the Bag's in the River",
+          "Cancer Man",
+          "Gray Matter",
+          "Crazy Handful of Nothin'",
+          "A No-Rough-Stuff-Type Deal"
+        ],
+        "episode_clips": [
+          "https://www.youtube.com/watch?v=Lkzrdw_Jqx8",
+          "https://www.youtube.com/watch?v=HhesaQXLuRY",
+          "https://www.youtube.com/watch?v=YxH2F9tYyG4",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0"
+        ],
+        "release_year": 2008,
+        "avg_rating": 8.9
       },
-      "fun_fact": "The famous 'I am the danger' line was improvised by Bryan Cranston."
-    },
-    {
-      "title": "Inception",
-      "description": "A thief who enters the dreams of others to steal secrets is given a chance to erase his criminal past.",
-      "id": "MOV002",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=YoHD9XEInc0",
-      "imdb_score": 8.8,
-      "metascore": 74,
-      "type": "movie"
-    },
-    {
-      "title": "Stranger Things",
-      "description": "A group of young friends witness supernatural forces and secret government exploits in their small town.",
-      "id": "TV002",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjg2NmM0MTEtYWY2Yy00NmFlLTllNTMtMjVkZjEwMGVlNzdjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=b9EkMc79ZSU",
-      "imdb_score": 8.7,
-      "metascore": 76,
-      "type": "tv_show",
-      "seasons": {
-        "1": { "episodes": 8, "release_year": 2016, "avg_rating": 8.7 },
-        "2": { "episodes": 9, "release_year": 2017, "avg_rating": 8.6 },
-        "3": { "episodes": 8, "release_year": 2019, "avg_rating": 8.5 },
-        "4": { "episodes": 9, "release_year": 2022, "avg_rating": 8.9 },
-        "5": { "episodes": 8, "release_year": 2024, "avg_rating": null }
+      "2": {
+        "episode_titles": [
+          "Seven Thirty-Seven",
+          "Grilled",
+          "Bit by a Dead Bee",
+          "Down",
+          "Breakage",
+          "Peekaboo",
+          "Negro y Azul",
+          "Better Call Saul",
+          "4 Days Out",
+          "Over",
+          "Mandala",
+          "Phoenix",
+          "ABQ"
+        ],
+        "episode_clips": [
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y"
+        ],
+        "release_year": 2009,
+        "avg_rating": 9.1
+      },
+      "3": {
+        "episode_titles": [
+          "No Más",
+          "Caballo sin Nombre",
+          "I.F.T.",
+          "Green Light",
+          "Más",
+          "Sunset",
+          "One Minute",
+          "I See You",
+          "Kafkaesque",
+          "Fly",
+          "Abiquiu",
+          "Half Measures",
+          "Full Measure"
+        ],
+        "episode_clips": [
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y"
+        ],
+        "release_year": 2010,
+        "avg_rating": 9.3
+      },
+      "4": {
+        "episode_titles": [
+          "Box Cutter",
+          "Thirty-Eight Snub",
+          "Open House",
+          "Bullet Points",
+          "Shotgun",
+          "Cornered",
+          "Problem Dog",
+          "Hermanos",
+          "Bug",
+          "Salud",
+          "Crawl Space",
+          "End Times",
+          "Face Off"
+        ],
+        "episode_clips": [
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y"
+        ],
+        "release_year": 2011,
+        "avg_rating": 9.6
+      },
+      "5": {
+        "episode_titles": [
+          "Live Free or Die",
+          "Madrigal",
+          "Hazard Pay",
+          "Fifty-One",
+          "Dead Freight",
+          "Buyout",
+          "Say My Name",
+          "Gliding Over All",
+          "Blood Money",
+          "Buried",
+          "Confessions",
+          "Rabid Dog",
+          "To'hajiilee",
+          "Ozymandias",
+          "Granite State",
+          "Felina"
+        ],
+        "episode_clips": [
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=5YQY2vZzX1w",
+          "https://www.youtube.com/watch?v=JDFvX4JjC4M",
+          "https://www.youtube.com/watch?v=KZQe9k0kQ1Y",
+          "https://www.youtube.com/watch?v=9V9b9i8D1k0",
+          "https://www.youtube.com/watch?v=8h9yxq6J1X0",
+          "https://www.youtube.com/watch?v=Q1M6CbQHr1A"
+        ],
+        "release_year": 2012,
+        "avg_rating": 9.7
       }
     },
-    {
-      "title": "The Dark Knight",
-      "description": "Batman faces the Joker, who wreaks havoc on Gotham City.",
-      "id": "MOV003",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
-      "imdb_score": 9.0,
-      "metascore": 84,
-      "type": "movie"
+    "fun_fact": "The famous 'I am the danger' line was improvised by Bryan Cranston.",
+    "img":"https://m.media-amazon.com/images/M/MV5BMTJiMzgwZTktYzZhZC00YzhhLWEzZDUtMGM2NTE4MzQ4NGFmXkEyXkFqcGdeQWpybA@@._V1_.jpg"
+  },
+  {
+    "title": "Inception",
+    "description": "A thief who enters the dreams of others to steal secrets is given a chance to erase his criminal past.",
+    "id": "MOV002",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+    "imdb_score": 8.8,
+    "metascore": 74,
+    "type": "movie",
+    "genre": ["Action", "Adventure", "Sci-Fi"],
+    "img":"https://m.media-amazon.com/images/S/pv-target-images/e826ebbcc692b4d19059d24125cf23699067ab621c979612fd0ca11ab42a65cb._SX1080_FMjpg_.jpg"
+  },
+  {
+    "title": "Stranger Things",
+    "description": "A group of young friends witness supernatural forces and secret government exploits in their small town.",
+    "id": "TV002",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjg2NmM0MTEtYWY2Yy00NmFlLTllNTMtMjVkZjEwMGVlNzdjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=b9EkMc79ZSU",
+    "imdb_score": 8.7,
+    "metascore": 76,
+    "type": "tv_show",
+    "genre": ["Drama", "Fantasy", "Horror"],
+    "seasons": {
+      "1": { "episodes": 8, "release_year": 2016, "avg_rating": 8.7 },
+      "2": { "episodes": 9, "release_year": 2017, "avg_rating": 8.6 },
+      "3": { "episodes": 8, "release_year": 2019, "avg_rating": 8.5 },
+      "4": { "episodes": 9, "release_year": 2022, "avg_rating": 8.9 },
+      "5": { "episodes": 8, "release_year": 2024, "avg_rating": null }
+       // TODO: Put some videos for all episodes
+       
     },
-    {
-      "title": "The Office (U.S.)",
-      "description": "A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.",
-      "id": "TV003",
-      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNg6zfpcQ24TybzRc6p9NEh58UR-4rbKr1uQ&s",
-      "trailer_url": "https://www.youtube.com/watch?v=LHOtME2DL4g",
-      "imdb_score": 8.9,
-      "metascore": 81,
-      "type": "tv_show",
-      "seasons": {
-        "1": { "episodes": 6, "release_year": 2005, "avg_rating": 7.9 },
-        "2": { "episodes": 22, "release_year": 2005, "avg_rating": 8.5 },
-        "3": { "episodes": 25, "release_year": 2006, "avg_rating": 8.8 },
-        "4": { "episodes": 19, "release_year": 2007, "avg_rating": 8.7 },
-        "5": { "episodes": 28, "release_year": 2008, "avg_rating": 8.8 },
-        "6": { "episodes": 26, "release_year": 2009, "avg_rating": 8.6 },
-        "7": { "episodes": 26, "release_year": 2010, "avg_rating": 8.6 },
-        "8": { "episodes": 24, "release_year": 2011, "avg_rating": 8.2 },
-        "9": { "episodes": 25, "release_year": 2012, "avg_rating": 8.1 }
-      },
-      "fun_fact": "The famous 'That's what she said' joke was improvised by Steve Carell."
+    "img":"https://m.media-amazon.com/images/M/MV5BMTY2NTQ1NzY0OF5BMl5BanBnXkFtZTgwNjI2OTMxNTM@._V1_.jpg"
+  },
+  {
+    "title": "The Dark Knight",
+    "description": "Batman faces the Joker, who wreaks havoc on Gotham City.",
+    "id": "MOV003",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+    "imdb_score": 9.0,
+    "metascore": 84,
+    "type": "movie",
+    "genre": ["Action", "Crime", "Drama"]
+  },
+  {
+    "title": "The Office (U.S.)",
+    "description": "A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.",
+    "id": "TV003",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNg6zfpcQ24TybzRc6p9NEh58UR-4rbKr1uQ&s",
+    "trailer_url": "https://www.youtube.com/watch?v=LHOtME2DL4g",
+    "imdb_score": 8.9,
+    "metascore": 81,
+    "type": "tv_show",
+    "genre": ["Comedy"],
+    "seasons": {
+      "1": { "episodes": 6, "release_year": 2005, "avg_rating": 7.9 },
+      "2": { "episodes": 22, "release_year": 2005, "avg_rating": 8.5 },
+      "3": { "episodes": 25, "release_year": 2006, "avg_rating": 8.8 },
+      "4": { "episodes": 19, "release_year": 2007, "avg_rating": 8.7 },
+      "5": { "episodes": 28, "release_year": 2008, "avg_rating": 8.8 },
+      "6": { "episodes": 26, "release_year": 2009, "avg_rating": 8.6 },
+      "7": { "episodes": 26, "release_year": 2010, "avg_rating": 8.6 },
+      "8": { "episodes": 24, "release_year": 2011, "avg_rating": 8.2 },
+      "9": { "episodes": 25, "release_year": 2012, "avg_rating": 8.1 }
+       // TODO: Put some videos for all episodes
     },
-    {
-      "title": "Pulp Fiction",
-      "description": "The lives of two mob hitmen, a boxer, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-      "id": "MOV004",
-      "thumbnail": "https://m.media-amazon.com/images/I/81UTs3sC5hL._AC_UF1000,1000_QL80_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=s7EdQ4FqbhY",
-      "imdb_score": 8.9,
-      "metascore": 94,
-      "type": "movie"
+    "fun_fact": "The famous 'That's what she said' joke was improvised by Steve Carell."
+  },
+  {
+    "title": "Pulp Fiction",
+    "description": "The lives of two mob hitmen, a boxer, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "id": "MOV004",
+    "thumbnail": "https://m.media-amazon.com/images/I/81UTs3sC5hL._AC_UF1000,1000_QL80_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=s7EdQ4FqbhY",
+    "imdb_score": 8.9,
+    "metascore": 94,
+    "type": "movie",
+    "genre": ["Crime", "Drama"]
+  },
+  {
+    "title": "Game of Thrones",
+    "description": "Nine noble families wage war against each other in order to gain control over the mythical land of Westeros.",
+    "id": "TV004",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BMTNhMDJmNmYtNDQ5OS00ODdlLWE0ZDAtZTgyYTIwNDY3OTU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=gcTkNV5Vg1E",
+    "imdb_score": 9.2,
+    "metascore": 89,
+    "type": "tv_show",
+    "genre": ["Action", "Adventure", "Drama"],
+    "seasons": {
+      "1": { "episodes": 10, "release_year": 2011, "avg_rating": 9.1 },
+      "2": { "episodes": 10, "release_year": 2012, "avg_rating": 9.2 },
+      "3": { "episodes": 10, "release_year": 2013, "avg_rating": 9.3 },
+      "4": { "episodes": 10, "release_year": 2014, "avg_rating": 9.4 },
+      "5": { "episodes": 10, "release_year": 2015, "avg_rating": 9.2 },
+      "6": { "episodes": 10, "release_year": 2016, "avg_rating": 9.3 },
+      "7": { "episodes": 7, "release_year": 2017, "avg_rating": 9.1 },
+      "8": { "episodes": 6, "release_year": 2019, "avg_rating": 6.3 }
+       // TODO: Put some videos for all episodes
     },
-    {
-      "title": "Game of Thrones",
-      "description": "Nine noble families wage war against each other in order to gain control over the mythical land of Westeros.",
-      "id": "TV004",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BMTNhMDJmNmYtNDQ5OS00ODdlLWE0ZDAtZTgyYTIwNDY3OTU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=gcTkNV5Vg1E",
-      "imdb_score": 9.2,
-      "metascore": 89,
-      "type": "tv_show",
-      "seasons": {
-        "1": { "episodes": 10, "release_year": 2011, "avg_rating": 9.1 },
-        "2": { "episodes": 10, "release_year": 2012, "avg_rating": 9.2 },
-        "3": { "episodes": 10, "release_year": 2013, "avg_rating": 9.3 },
-        "4": { "episodes": 10, "release_year": 2014, "avg_rating": 9.4 },
-        "5": { "episodes": 10, "release_year": 2015, "avg_rating": 9.2 },
-        "6": { "episodes": 10, "release_year": 2016, "avg_rating": 9.3 },
-        "7": { "episodes": 7, "release_year": 2017, "avg_rating": 9.1 },
-        "8": { "episodes": 6, "release_year": 2019, "avg_rating": 6.3 }
-      },
-      "fun_fact": "The phrase 'Winter is coming' was almost cut from the show as executives thought it sounded too much like a weather report."
+    "fun_fact": "The phrase 'Winter is coming' was almost cut from the show as executives thought it sounded too much like a weather report."
+  },
+  {
+    "title": "Forrest Gump",
+    "description": "The life journey of Forrest Gump, a kind-hearted man from Alabama who unknowingly influences several historical events.",
+    "id": "MOV005",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=bLvqoHBptjg",
+    "imdb_score": 8.8,
+    "metascore": 82,
+    "type": "movie",
+    "genre": ["Drama", "Romance"],
+    "fun_fact": "Despite being considered one of the greatest films ever made, it was a box office disappointment when first released."
+  },
+  {
+    "title": "The Mandalorian",
+    "description": "A lone bounty hunter navigates the galaxy, protecting a mysterious child known as 'The Child'.",
+    "id": "TV005",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjgxZGM0OWUtZGY1MS00MWRmLTk2N2ItYjQyZTI1OThlZDliXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=aOC8E8z_ifw",
+    "imdb_score": 8.7,
+    "metascore": 70,
+    "type": "tv_show",
+    "genre": ["Action", "Adventure", "Sci-Fi"],
+    "seasons": {
+      "1": { "episodes": 8, "release_year": 2019, "avg_rating": 8.7 },
+      "2": { "episodes": 8, "release_year": 2020, "avg_rating": 9.0 },
+      "3": { "episodes": 8, "release_year": 2023, "avg_rating": 8.3 }
+       // TODO: Put some videos for all episodes
     },
-    {
-      "title": "Forrest Gump",
-      "description": "The life journey of Forrest Gump, a kind-hearted man from Alabama who unknowingly influences several historical events.",
-      "id": "MOV005",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=bLvqoHBptjg",
-      "imdb_score": 8.8,
-      "metascore": 82,
-      "type": "movie"
+    "fun_fact": "Baby Yoda's real name (Grogu) was kept secret until Season 2 to maintain mystery."
+  },
+  {
+    "title": "The Matrix",
+    "description": "A computer hacker learns about the true nature of his reality and his role in the war against its controllers.",
+    "id": "MOV006",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZNl1EYS9z4PfNViNWMK_V5ZspshcWfksobw&s",
+    "trailer_url": "https://www.youtube.com/watch?v=vKQi3bBA1y8",
+    "imdb_score": 8.7,
+    "metascore": 73,
+    "type": "movie",
+    "genre": ["Action", "Sci-Fi"]
+  },
+  {
+    "title": "Friends",
+    "description": "Follows the personal and professional lives of six twenty to thirty-something friends living in Manhattan.",
+    "id": "TV006",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTU2YmM5ZjctOGVlMC00YTczLTljM2MtYjhlNGI5YWMyZjFkXkEyXkFqcGc@._V1_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=IEEbUzffzrk",
+    "imdb_score": 8.9,
+    "metascore": 78,
+    "type": "tv_show",
+    "genre": ["Comedy", "Romance"],
+    "seasons": {
+      "1": { "episodes": 24, "release_year": 1994, "avg_rating": 8.5 },
+      "2": { "episodes": 24, "release_year": 1995, "avg_rating": 8.7 },
+      "3": { "episodes": 25, "release_year": 1996, "avg_rating": 9.0 },
+      "4": { "episodes": 24, "release_year": 1997, "avg_rating": 9.1 },
+      "5": { "episodes": 24, "release_year": 1998, "avg_rating": 9.2 },
+      "6": { "episodes": 25, "release_year": 1999, "avg_rating": 9.2 },
+      "7": { "episodes": 24, "release_year": 2000, "avg_rating": 9.1 },
+      "8": { "episodes": 24, "release_year": 2001, "avg_rating": 9.0 },
+      "9": { "episodes": 24, "release_year": 2002, "avg_rating": 8.8 },
+      "10": { "episodes": 18, "release_year": 2003, "avg_rating": 8.7 }
+       // TODO: Put some videos for all episodes
     },
-    {
-      "title": "The Mandalorian",
-      "description": "A lone bounty hunter navigates the galaxy, protecting a mysterious child known as 'The Child'.",
-      "id": "TV005",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BNjgxZGM0OWUtZGY1MS00MWRmLTk2N2ItYjQyZTI1OThlZDliXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=aOC8E8z_ifw",
-      "imdb_score": 8.7,
-      "metascore": 70,
-      "type": "tv_show",
-      "seasons": {
-        "1": { "episodes": 8, "release_year": 2019, "avg_rating": 8.7 },
-        "2": { "episodes": 8, "release_year": 2020, "avg_rating": 9.0 },
-        "3": { "episodes": 8, "release_year": 2023, "avg_rating": 8.3 }
-      },
-      "fun_fact": "Baby Yoda's real name (Grogu) was kept secret until Season 2 to maintain mystery."
-    },
-    {
-      "title": "The Matrix",
-      "description": "A computer hacker learns about the true nature of his reality and his role in the war against its controllers.",
-      "id": "MOV006",
-      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZNl1EYS9z4PfNViNWMK_V5ZspshcWfksobw&s",
-      "trailer_url": "https://www.youtube.com/watch?v=vKQi3bBA1y8",
-      "imdb_score": 8.7,
-      "metascore": 73,
-      "type": "movie"
-    },
-    {
-      "title": "Friends",
-      "description": "Follows the personal and professional lives of six twenty to thirty-something friends living in Manhattan.",
-      "id": "TV006",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BOTU2YmM5ZjctOGVlMC00YTczLTljM2MtYjhlNGI5YWMyZjFkXkEyXkFqcGc@._V1_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=IEEbUzffzrk",
-      "imdb_score": 8.9,
-      "metascore": 78,
-      "type": "tv_show",
-      "seasons": {
-        "1": { "episodes": 24, "release_year": 1994, "avg_rating": 8.5 },
-        "2": { "episodes": 24, "release_year": 1995, "avg_rating": 8.7 },
-        "3": { "episodes": 25, "release_year": 1996, "avg_rating": 9.0 },
-        "4": { "episodes": 24, "release_year": 1997, "avg_rating": 9.1 },
-        "5": { "episodes": 24, "release_year": 1998, "avg_rating": 9.2 },
-        "6": { "episodes": 25, "release_year": 1999, "avg_rating": 9.2 },
-        "7": { "episodes": 24, "release_year": 2000, "avg_rating": 9.1 },
-        "8": { "episodes": 24, "release_year": 2001, "avg_rating": 9.0 },
-        "9": { "episodes": 24, "release_year": 2002, "avg_rating": 8.8 },
-        "10": { "episodes": 18, "release_year": 2003, "avg_rating": 8.7 }
-      },
-      "fun_fact": "The famous couch in Central Perk was found in the Warner Bros. basement and was almost thrown away."
-    },
-    {
-      "title": "Interstellar",
-      "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-      "id": "MOV007",
-      "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "trailer_url": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
-      "imdb_score": 8.6,
-      "metascore": 74,
-      "type": "movie"
-    },
-      {
-        "title": "The Witcher",
-        "description": "Geralt of Rivia, a solitary monster hunter, struggles to find his place in a world where people often prove more wicked than beasts.",
-        "id": "TV007",
-        "thumbnail": "https://m.media-amazon.com/images/M/MV5BMTQ5MDU5MTktMDZkMy00NDU1LWIxM2UtODg5OGFiNmRhNDBjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=ndl1W4ltcmg",
-        "imdb_score": 8.2,
-        "metascore": 68,
-        "type": "tv_show",
-        "seasons": {
-          "1": { "episodes": 8, "release_year": 2019, "avg_rating": 8.2 },
-          "2": { "episodes": 8, "release_year": 2021, "avg_rating": 8.4 },
-          "3": { "episodes": 8, "release_year": 2023, "avg_rating": 7.8 }
-        },
-        "fun_fact": "Henry Cavill was such a fan of the Witcher games that he pursued the role of Geralt himself."
-      },
-      {
-        "title": "The Shawshank Redemption",
-        "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-        "id": "MOV008",
-        "thumbnail": "https://m.media-amazon.com/images/I/71nBGhNjGIL._AC_UF1000,1000_QL80_.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=6hB3S9bIaco",
-        "imdb_score": 9.3,
-        "metascore": 80,
-        "type": "movie",
-        "fun_fact": "Despite being considered one of the greatest films ever made, it was a box office disappointment when first released."
-      },
-      {
-        "title": "The Crown",
-        "description": "Follows the political rivalries and romance of Queen Elizabeth II's reign and the events that shaped the second half of the 20th century.",
-        "id": "TV008",
-        "thumbnail": "https://m.media-amazon.com/images/I/81xFn+Uvr+L.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=JWtnJjn6ng0",
-        "imdb_score": 8.6,
-        "metascore": 85,
-        "type": "tv_show",
-        "seasons": {
-          "1": { "episodes": 10, "release_year": 2016, "avg_rating": 8.7 },
-          "2": { "episodes": 10, "release_year": 2017, "avg_rating": 8.8 },
-          "3": { "episodes": 10, "release_year": 2019, "avg_rating": 8.5 },
-          "4": { "episodes": 10, "release_year": 2020, "avg_rating": 8.7 },
-          "5": { "episodes": 10, "release_year": 2022, "avg_rating": 7.5 },
-          "6": { "episodes": 10, "release_year": 2023, "avg_rating": 7.8 }
-        },
-        "fun_fact": "Each season covers approximately one decade of Queen Elizabeth II's reign, with a new cast every two seasons."
-      },
-      {
-        "title": "Gladiator",
-        "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
-        "id": "MOV009",
-        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShyOogVeq0niR-YHe_eXbsb9SjUwNmj_0rDA&s",
-        "trailer_url": "https://www.youtube.com/watch?v=owK1qxDselE",
-        "imdb_score": 8.5,
-        "metascore": 67,
-        "type": "movie",
-        "fun_fact": "Russell Crowe ad-libbed the famous line 'Are you not entertained?' during filming."
-      },
-      {
-        "title": "Black Mirror",
-        "description": "An anthology series exploring a twisted, high-tech multiverse where humanity's greatest innovations and darkest instincts collide.",
-        "id": "TV009",
-        "thumbnail": "https://hips.hearstapps.com/hmg-prod/images/black-mirror-font-1513096756.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=jDiYGjp5iFg",
-        "imdb_score": 8.7,
-        "metascore": 83,
-        "type": "tv_show",
-        "seasons": {
-          "1": { "episodes": 3, "release_year": 2011, "avg_rating": 8.3 },
-          "2": { "episodes": 4, "release_year": 2013, "avg_rating": 8.5 },
-          "3": { "episodes": 6, "release_year": 2016, "avg_rating": 8.8 },
-          "4": { "episodes": 6, "release_year": 2017, "avg_rating": 8.6 },
-          "5": { "episodes": 3, "release_year": 2019, "avg_rating": 7.3 },
-          "6": { "episodes": 5, "release_year": 2023, "avg_rating": 7.9 }
-        },
-        "fun_fact": "The episode 'San Junipero' was the first Black Mirror episode with a happy ending."
-      },
-      {
-        "title": "The Lord of the Rings: The Fellowship of the Ring",
-        "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth.",
-        "id": "MOV010",
-        "thumbnail": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lord_Rings_Fellowship_Ring.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=V75dMMIW2B4",
-        "imdb_score": 8.8,
-        "metascore": 92,
-        "type": "movie",
-        "fun_fact": "Viggo Mortensen broke two toes when he kicked the Uruk-hai helmet in the famous scream scene - the scream of pain was real."
-      },
-      {
-        "title": "Westworld",
-        "description": "Set in a futuristic theme park, where guests can live out their fantasies through the use of lifelike robots.",
-        "id": "TV010",
-        "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjM2MTA5NjIwNV5BMl5BanBnXkFtZTgwNjI2OTMxNTM@._V1_FMjpg_UX1000_.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=IuS5huqOND4",
-        "imdb_score": 8.5,
-        "metascore": 74,
-        "type": "tv_show",
-        "seasons": {
-          "1": { "episodes": 10, "release_year": 2016, "avg_rating": 8.9 },
-          "2": { "episodes": 10, "release_year": 2018, "avg_rating": 8.3 },
-          "3": { "episodes": 8, "release_year": 2020, "avg_rating": 7.8 },
-          "4": { "episodes": 8, "release_year": 2022, "avg_rating": 7.5 }
-        },
-        "fun_fact": "Anthony Hopkins' character Dr. Ford was originally supposed to die in the first season, but his performance was so compelling they rewrote the story."
-      },
-      {
-        "title": "The Silence of the Lambs",
-        "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
-        "id": "MOV011",
-        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXD5EzCfvxKSqbAfp8BlsWjDQumsX0S9rYVg&s",
-        "trailer_url": "https://www.youtube.com/watch?v=RuX2MQeb8UM",
-        "imdb_score": 8.6,
-        "metascore": 85,
-        "type": "movie",
-        "fun_fact": "Only one of three films to win all five major Academy Awards (Best Picture, Director, Actor, Actress, and Screenplay)."
-      },
-      {
-        "title": "Narcos",
-        "description": "A chronicled look at the criminal exploits of Colombian drug lord Pablo Escobar, as well as the many other drug kingpins who plagued the country through the years.",
-        "id": "TV011",
-        "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzQwOTcwMzIwN15BMl5BanBnXkFtZTgwMjYxMTA0NjE@._V1_FMjpg_UX1000_.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=xl8zdCY-abw",
-        "imdb_score": 8.8,
-        "metascore": 77,
-        "type": "tv_show",
-        "seasons": {
-          "1": { "episodes": 10, "release_year": 2015, "avg_rating": 8.9 },
-          "2": { "episodes": 10, "release_year": 2016, "avg_rating": 9.0 },
-          "3": { "episodes": 10, "release_year": 2017, "avg_rating": 8.8 }
-        },
-        "fun_fact": "Wagner Moura, who played Pablo Escobar, didn't speak Spanish before being cast and learned it specifically for the role."
-      },
-      {
-        "title": "The Revenant",
-        "description": "A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by bear and left for dead by members of his own hunting team.",
-        "id": "MOV012",
-        "thumbnail": "https://m.media-amazon.com/images/M/MV5BYTgwNmQzZDctMjNmOS00OTExLTkwM2UtNzJmOTJhODFjOTdlXkEyXkFqcGc@._V1_.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=LoebZZ8K5N0",
-        "imdb_score": 8.0,
-        "metascore": 76,
-        "type": "movie",
-        "fun_fact": "Leonardo DiCaprio actually ate raw bison liver during filming, despite being vegetarian."
-      },
-      {
-        "title": "The Boys",
-        "description": "A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers.",
-        "id": "TV012",
-        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8nTHbkR8hRo2JHZ7L1lXa5VWCatbPHWeY8A&s",
-        "trailer_url": "https://www.youtube.com/watch?v=M1bhOaLV4FU",
-        "imdb_score": 8.7,
-        "metascore": 74,
-        "type": "tv_show",
-        "seasons": {
-          "1": { "episodes": 8, "release_year": 2019, "avg_rating": 8.7 },
-          "2": { "episodes": 8, "release_year": 2020, "avg_rating": 8.8 },
-          "3": { "episodes": 8, "release_year": 2022, "avg_rating": 8.6 },
-          "4": { "episodes": 8, "release_year": 2024, "avg_rating": null }
-        },
-        "fun_fact": "Antony Starr (Homelander) was arrested in Spain for assault after getting into a bar fight while still in costume and makeup."
-      },
-      {
-        "title": "The Social Network",
-        "description": "The story of the creation of Facebook and the legal battles that followed.",
-        "id": "MOV013",
-        "thumbnail": "https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png",
-        "trailer_url": "https://www.youtube.com/watch?v=lB95KLmpLR4",
-        "imdb_score": 7.8,
-        "metascore": 95,
-        "type": "movie",
-        "fun_fact": "Jesse Eisenberg met Mark Zuckerberg only once before filming - at a urinal in a restaurant bathroom."
-      },
-      {
-        "title": "The Umbrella Academy",
-        "description": "A dysfunctional family of superheroes comes together to solve the mystery of their father's death and the threat of an impending apocalypse.",
-        "id": "TV013",
-        "thumbnail": "https://m.media-amazon.com/images/M/MV5BMzlmMmIxODItYzBjNC00YjMwLWIwOTAtNzVlMTBlNTNkMjZjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-        "trailer_url": "https://www.youtube.com/watch?v=0DAmWHxeoKw",
-        "imdb_score": 8.0,
-        "metascore": 69,
-        "type": "tv_show",
-        "seasons": {
-          "1": { "episodes": 10, "release_year": 2019, "avg_rating": 8.0 },
-          "2": { "episodes": 10, "release_year": 2020, "avg_rating": 8.2 },
-          "3": { "episodes": 10, "release_year": 2022, "avg_rating": 7.8 },
-          "4": { "episodes": 6, "release_year": 2024, "avg_rating": null }
-        },
-        "fun_fact": "Elliot Page came out as transgender between seasons 2 and 3, leading to changes in how his character Vanya (now Viktor) was written."
-      },
-      {
-        "title": "The Grand Budapest Hotel",
-        "description": "The adventures of Gustave H, a legendary concierge at a famous European hotel between the wars, and Zero Moustafa, the lobby boy who becomes his most trusted friend.",
-        "id": "MOV014",
-        "thumbnail": "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Grand_Budapest_Hotel.png",
-        "trailer_url": "https://www.youtube.com/watch?v=1Fg5iWmQjwk",
-        "imdb_score": 8.1,
-        "metascore": 88,
-        "type": "movie",
-        "fun_fact": "Wes Anderson created an entirely fictional country (Zubrowka) and even had newspapers printed in a fake language for set dressing."
-      },
+    "fun_fact": "The famous couch in Central Perk was found in the Warner Bros. basement and was almost thrown away."
+  },
+  {
+    "title": "Interstellar",
+    "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "id": "MOV007",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+    "imdb_score": 8.6,
+    "metascore": 74,
+    "type": "movie",
+    "genre": ["Adventure", "Drama", "Sci-Fi"]
+  },
 
-        {
-          "title": "Peaky Blinders",
-          "description": "A gangster family epic set in 1919 Birmingham, England; centered on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby.",
-          "id": "TV014",
-          "thumbnail": "https://m.media-amazon.com/images/M/MV5BM2ZiNThlNzItNmY3Ny00NjA2LWJlMjItNTk1NDI3MDMyMTk4XkEyXkFqcGc@._V1_.jpg",
-          "trailer_url": "https://www.youtube.com/watch?v=oVzVdvGIC7U",
-          "imdb_score": 8.8,
-          "metascore": 85,
-          "type": "tv_show",
-          "seasons": {
-            "1": { "episodes": 6, "release_year": 2013, "avg_rating": 8.3 },
-            "2": { "episodes": 6, "release_year": 2014, "avg_rating": 8.7 },
-            "3": { "episodes": 6, "release_year": 2016, "avg_rating": 8.9 },
-            "4": { "episodes": 6, "release_year": 2017, "avg_rating": 9.0 },
-            "5": { "episodes": 6, "release_year": 2019, "avg_rating": 9.1 },
-            "6": { "episodes": 6, "release_year": 2022, "avg_rating": 9.2 }
-          },
-          "fun_fact": "Cillian Murphy learned the Birmingham accent by listening to recordings of his co-star Helen McCrory's father, who was from Birmingham."
-        },
-        {
-          "title": "The Departed",
-          "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
-          "id": "MOV015",
-          "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAjnR2unZpV2CbntiL9sooRKG62mtKCiyI1A&s",
-          "trailer_url": "https://www.youtube.com/watch?v=auYbpnEwBBg",
-          "imdb_score": 8.5,
-          "metascore": 85,
-          "type": "movie",
-          "fun_fact": "Jack Nicholson improvised the famous 'You're a fucking rat' line and actually cut his hand on the glass during the scene."
-        },
+  {
+    "title": "The Shawshank Redemption",
+    "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "id": "MOV008",
+    "thumbnail": "https://m.media-amazon.com/images/I/71nBGhNjGIL._AC_UF1000,1000_QL80_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=6hB3S9bIaco",
+    "imdb_score": 9.3,
+    "metascore": 80,
+    "type": "movie",
+    "genre": ["Drama"],
+    "fun_fact": "Despite being considered one of the greatest films ever made, it was a box office disappointment when first released."
+  },
+  {
+    "title": "The Crown",
+    "description": "Follows the political rivalries and romance of Queen Elizabeth II's reign and the events that shaped the second half of the 20th century.",
+    "id": "TV008",
+    "thumbnail": "https://m.media-amazon.com/images/I/81xFn+Uvr+L.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=JWtnJjn6ng0",
+    "imdb_score": 8.6,
+    "metascore": 85,
+    "type": "tv_show",
+    "genre": ["Biography", "Drama", "History"],
+    "seasons": {
+      "1": { "episodes": 10, "release_year": 2016, "avg_rating": 8.7 },
+      "2": { "episodes": 10, "release_year": 2017, "avg_rating": 8.8 },
+      "3": { "episodes": 10, "release_year": 2019, "avg_rating": 8.5 },
+      "4": { "episodes": 10, "release_year": 2020, "avg_rating": 8.7 },
+      "5": { "episodes": 10, "release_year": 2022, "avg_rating": 7.5 },
+      "6": { "episodes": 10, "release_year": 2023, "avg_rating": 7.8 }
+       // TODO: Put some videos for all episodes
+    },
+    "fun_fact": "Each season covers approximately one decade of Queen Elizabeth II's reign, with a new cast every two seasons."
+  },
+  {
+    "title": "Gladiator",
+    "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+    "id": "MOV009",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShyOogVeq0niR-YHe_eXbsb9SjUwNmj_0rDA&s",
+    "trailer_url": "https://www.youtube.com/watch?v=owK1qxDselE",
+    "imdb_score": 8.5,
+    "metascore": 67,
+    "type": "movie",
+    "genre": ["Action", "Adventure", "Drama"],
+    "fun_fact": "Russell Crowe ad-libbed the famous line 'Are you not entertained?' during filming."
+  },
+  {
+    "title": "Black Mirror",
+    "description": "An anthology series exploring a twisted, high-tech multiverse where humanity's greatest innovations and darkest instincts collide.",
+    "id": "TV009",
+    "thumbnail": "https://hips.hearstapps.com/hmg-prod/images/black-mirror-font-1513096756.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=jDiYGjp5iFg",
+    "imdb_score": 8.7,
+    "metascore": 83,
+    "type": "tv_show",
+    "genre": ["Drama", "Sci-Fi", "Thriller"],
+    "seasons": {
+      "1": { "episodes": 3, "release_year": 2011, "avg_rating": 8.3 },
+      "2": { "episodes": 4, "release_year": 2013, "avg_rating": 8.5 },
+      "3": { "episodes": 6, "release_year": 2016, "avg_rating": 8.8 },
+      "4": { "episodes": 6, "release_year": 2017, "avg_rating": 8.6 },
+      "5": { "episodes": 3, "release_year": 2019, "avg_rating": 7.3 },
+      "6": { "episodes": 5, "release_year": 2023, "avg_rating": 7.9 }
+       // TODO: Put some videos for all episodes
+    },
+    "fun_fact": "The episode 'San Junipero' was the first Black Mirror episode with a happy ending."
+  },
+  {
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth.",
+    "id": "MOV010",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lord_Rings_Fellowship_Ring.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=V75dMMIW2B4",
+    "imdb_score": 8.8,
+    "metascore": 92,
+    "type": "movie",
+    "genre": ["Action", "Adventure", "Fantasy"],
+    "fun_fact": "Viggo Mortensen broke two toes when he kicked the Uruk-hai helmet in the famous scream scene - the scream of pain was real."
+  },
+  {
+    "title": "Westworld",
+    "description": "Set in a futuristic theme park, where guests can live out their fantasies through the use of lifelike robots.",
+    "id": "TV010",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjM2MTA5NjIwNV5BMl5BanBnXkFtZTgwNjI2OTMxNTM@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=IuS5huqOND4",
+    "imdb_score": 8.5,
+    "metascore": 74,
+    "type": "tv_show",
+    "genre": ["Drama", "Mystery", "Sci-Fi"],
+    "seasons": {
+      "1": { "episodes": 10, "release_year": 2016, "avg_rating": 8.9 },
+      "2": { "episodes": 10, "release_year": 2018, "avg_rating": 8.3 },
+      "3": { "episodes": 8, "release_year": 2020, "avg_rating": 7.8 },
+      "4": { "episodes": 8, "release_year": 2022, "avg_rating": 7.5 }
+       // TODO: Put some videos for all episodes
+    },
+    "fun_fact": "Anthony Hopkins' character Dr. Ford was originally supposed to die in the first season, but his performance was so compelling they rewrote the story."
+  },
+  {
+    "title": "The Silence of the Lambs",
+    "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
+    "id": "MOV011",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXD5EzCfvxKSqbAfp8BlsWjDQumsX0S9rYVg&s",
+    "trailer_url": "https://www.youtube.com/watch?v=RuX2MQeb8UM",
+    "imdb_score": 8.6,
+    "metascore": 85,
+    "type": "movie",
+    "genre": ["Crime", "Drama", "Thriller"],
+    "fun_fact": "Only one of three films to win all five major Academy Awards (Best Picture, Director, Actor, Actress, and Screenplay)."
+  },
+  {
+    "title": "Narcos",
+    "description": "A chronicled look at the criminal exploits of Colombian drug lord Pablo Escobar, as well as the many other drug kingpins who plagued the country through the years.",
+    "id": "TV011",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzQwOTcwMzIwN15BMl5BanBnXkFtZTgwMjYxMTA0NjE@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=xl8zdCY-abw",
+    "imdb_score": 8.8,
+    "metascore": 77,
+    "type": "tv_show",
+    "genre": ["Biography", "Crime", "Drama"],
+    "seasons": {
+      "1": { "episodes": 10, "release_year": 2015, "avg_rating": 8.9 },
+      "2": { "episodes": 10, "release_year": 2016, "avg_rating": 9.0 },
+      "3": { "episodes": 10, "release_year": 2017, "avg_rating": 8.8 }
+       // TODO: Put some videos for all episodes
+    },
+    "fun_fact": "Wagner Moura, who played Pablo Escobar, didn't speak Spanish before being cast and learned it specifically for the role."
+  },
+  {
+    "title": "The Revenant",
+    "description": "A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by bear and left for dead by members of his own hunting team.",
+    "id": "MOV012",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BYTgwNmQzZDctMjNmOS00OTExLTkwM2UtNzJmOTJhODFjOTdlXkEyXkFqcGc@._V1_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=LoebZZ8K5N0",
+    "imdb_score": 8.0,
+    "metascore": 76,
+    "type": "movie",
+    "genre": ["Action", "Adventure", "Drama"],
+    "fun_fact": "Leonardo DiCaprio actually ate raw bison liver during filming, despite being vegetarian."
+  },
+  {
+    "title": "The Boys",
+    "description": "A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers.",
+    "id": "TV012",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8nTHbkR8hRo2JHZ7L1lXa5VWCatbPHWeY8A&s",
+    "trailer_url": "https://www.youtube.com/watch?v=M1bhOaLV4FU",
+    "imdb_score": 8.7,
+    "metascore": 74,
+    "type": "tv_show",
+    "genre": ["Action", "Comedy", "Crime"],
+    "seasons": {
+      "1": { "episodes": 8, "release_year": 2019, "avg_rating": 8.7 },
+      "2": { "episodes": 8, "release_year": 2020, "avg_rating": 8.8 },
+      "3": { "episodes": 8, "release_year": 2022, "avg_rating": 8.6 },
+      "4": { "episodes": 8, "release_year": 2024, "avg_rating": null }
+       // TODO: Put some videos for all episodes
+    },
+    "fun_fact": "Antony Starr (Homelander) was arrested in Spain for assault after getting into a bar fight while still in costume and makeup."
+  },
+  {
+    "title": "The Social Network",
+    "description": "The story of the creation of Facebook and the legal battles that followed.",
+    "id": "MOV013",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png",
+    "trailer_url": "https://www.youtube.com/watch?v=lB95KLmpLR4",
+    "imdb_score": 7.8,
+    "metascore": 95,
+    "type": "movie",
+    "genre": ["Biography", "Drama"],
+    "fun_fact": "Jesse Eisenberg met Mark Zuckerberg only once before filming - at a urinal in a restaurant bathroom."
+  },
+  {
+    "title": "The Umbrella Academy",
+    "description": "A dysfunctional family of superheroes comes together to solve the mystery of their father's death and the threat of an impending apocalypse.",
+    "id": "TV013",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BMzlmMmIxODItYzBjNC00YjMwLWIwOTAtNzVlMTBlNTNkMjZjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=0DAmWHxeoKw",
+    "imdb_score": 8.0,
+    "metascore": 69,
+    "type": "tv_show",
+    "genre": ["Action", "Adventure", "Comedy"],
+    "seasons": {
+      "1": { "episodes": 10, "release_year": 2019, "avg_rating": 8.0 },
+      "2": { "episodes": 10, "release_year": 2020, "avg_rating": 8.2 },
+      "3": { "episodes": 10, "release_year": 2022, "avg_rating": 7.8 },
+      "4": { "episodes": 6, "release_year": 2024, "avg_rating": null } // TODO: Put some videos for all episodes
+    },
+    "fun_fact": "Elliot Page came out as transgender between seasons 2 and 3, leading to changes in how his character Vanya (now Viktor) was written."
+  },
+  {
+    "title": "The Grand Budapest Hotel",
+    "description": "The adventures of Gustave H, a legendary concierge at a famous European hotel between the wars, and Zero Moustafa, the lobby boy who becomes his most trusted friend.",
+    "id": "MOV014",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Grand_Budapest_Hotel.png",
+    "trailer_url": "https://www.youtube.com/watch?v=1Fg5iWmQjwk",
+    "imdb_score": 8.1,
+    "metascore": 88,
+    "type": "movie",
+    "genre": ["Adventure", "Comedy", "Drama"],
+    "fun_fact": "Wes Anderson created an entirely fictional country (Zubrowka) and even had newspapers printed in a fake language for set dressing."
+  },
+  {
+    "title": "Peaky Blinders",
+    "description": "A gangster family epic set in 1919 Birmingham, England; centered on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby.",
+    "id": "TV014",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BM2ZiNThlNzItNmY3Ny00NjA2LWJlMjItNTk1NDI3MDMyMTk4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=oVzVdvGIC7U",
+    "imdb_score": 8.8,
+    "metascore": 85,
+    "type": "tv_show",
+    "genre": ["Crime", "Drama"],
+    "seasons": {
+      "1": { "episodes": 6, "release_year": 2013, "avg_rating": 8.3 },
+      "2": { "episodes": 6, "release_year": 2014, "avg_rating": 8.7 },
+      "3": { "episodes": 6, "release_year": 2016, "avg_rating": 8.9 },
+      "4": { "episodes": 6, "release_year": 2017, "avg_rating": 9.0 },
+      "5": { "episodes": 6, "release_year": 2019, "avg_rating": 9.1 },
+      "6": { "episodes": 6, "release_year": 2022, "avg_rating": 9.2 } // TODO: Put some videos for all episodes
+    },
+    "fun_fact": "Cillian Murphy learned the Birmingham accent by listening to recordings of his co-star Helen McCrory's father, who was from Birmingham."
+  },
+  {
+    "title": "The Departed",
+    "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+    "id": "MOV015",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAjnR2unZpV2CbntiL9sooRKG62mtKCiyI1A&s",
+    "trailer_url": "https://www.youtube.com/watch?v=auYbpnEwBBg",
+    "imdb_score": 8.5,
+    "metascore": 85,
+    "type": "movie",
+    "genre": ["Crime", "Drama", "Thriller"],
+    "fun_fact": "Jack Nicholson improvised the famous 'You're a fucking rat' line and actually cut his hand on the glass during the scene."
+  },
         {
           "title": "The Handmaid's Tale",
           "description": "Set in a dystopian future, a woman is forced to live as a concubine under a fundamentalist theocratic dictatorship.",
@@ -424,12 +599,13 @@ const Movies =  [
           "imdb_score": 8.4,
           "metascore": 82,
           "type": "tv_show",
+          "genre": ["Drama", "Sci-Fi", "Thriller"],
           "seasons": {
             "1": { "episodes": 10, "release_year": 2017, "avg_rating": 8.7 },
             "2": { "episodes": 13, "release_year": 2018, "avg_rating": 8.5 },
             "3": { "episodes": 13, "release_year": 2019, "avg_rating": 8.3 },
             "4": { "episodes": 10, "release_year": 2021, "avg_rating": 8.1 },
-            "5": { "episodes": 10, "release_year": 2022, "avg_rating": 7.9 }
+            "5": { "episodes": 10, "release_year": 2022, "avg_rating": 7.9 } // TODO: Put some videos for all episodes
           },
           "fun_fact": "The red color of the handmaids' costumes is officially called 'Handmaid's Red' and was specifically created for the show."
         },
@@ -442,6 +618,7 @@ const Movies =  [
           "imdb_score": 8.1,
           "metascore": 71,
           "type": "movie",
+          "genre": ["Comedy", "Crime", "Mystery"],
           "fun_fact": "Jeff Bridges wore the same sweater throughout filming - it was his personal sweater that he'd owned for years."
         },
         {
@@ -453,8 +630,9 @@ const Movies =  [
           "imdb_score": 8.6,
           "metascore": 79,
           "type": "tv_show",
+          "genre": ["Drama", "Horror", "Mystery"],
           "seasons": {
-            "1": { "episodes": 10, "release_year": 2018, "avg_rating": 8.7 }
+            "1": { "episodes": 10, "release_year": 2018, "avg_rating": 8.7 } // TODO: Put some videos for all episodes
           },
           "fun_fact": "Episode 6 features a 17-minute continuous shot that took 7 takes to perfect and required the actors to perform 11 pages of dialogue flawlessly."
         },
@@ -467,6 +645,7 @@ const Movies =  [
           "imdb_score": 8.2,
           "metascore": 90,
           "type": "movie",
+          "genre": ["Comedy", "Drama", "Sci-Fi"],
           "fun_fact": "The film's concept was so prescient that it's now studied in universities as a precursor to modern reality TV and social media culture."
         },
         {
@@ -478,13 +657,14 @@ const Movies =  [
           "imdb_score": 8.5,
           "metascore": 77,
           "type": "tv_show",
+          "genre": ["Drama", "Mystery", "Sci-Fi"],
           "seasons": {
             "1": { "episodes": 10, "release_year": 2015, "avg_rating": 8.0 },
             "2": { "episodes": 13, "release_year": 2017, "avg_rating": 8.5 },
             "3": { "episodes": 13, "release_year": 2018, "avg_rating": 8.8 },
             "4": { "episodes": 10, "release_year": 2019, "avg_rating": 8.7 },
             "5": { "episodes": 10, "release_year": 2020, "avg_rating": 8.5 },
-            "6": { "episodes": 6, "release_year": 2021, "avg_rating": 8.4 }
+            "6": { "episodes": 6, "release_year": 2021, "avg_rating": 8.4 } // TODO: Put some videos for all episodes
           },
           "fun_fact": "NASA scientists are fans of the show and have praised its realistic physics, even inviting the cast to tour NASA facilities."
         },
@@ -497,6 +677,7 @@ const Movies =  [
           "imdb_score": 8.5,
           "metascore": 66,
           "type": "movie",
+          "genre": ["Drama", "Mystery", "Thriller"],
           "fun_fact": "Christian Bale and Hugh Jackman learned real magic tricks for their roles, including the famous 'cups and balls' routine."
         },
         {
@@ -508,12 +689,13 @@ const Movies =  [
           "imdb_score": 8.7,
           "metascore": 80,
           "type": "tv_show",
+          "genre": ["Comedy", "Drama", "Romance"],
           "seasons": {
             "1": { "episodes": 8, "release_year": 2017, "avg_rating": 8.5 },
             "2": { "episodes": 10, "release_year": 2018, "avg_rating": 8.8 },
             "3": { "episodes": 8, "release_year": 2019, "avg_rating": 8.7 },
             "4": { "episodes": 8, "release_year": 2022, "avg_rating": 8.4 },
-            "5": { "episodes": 9, "release_year": 2023, "avg_rating": 8.6 }
+            "5": { "episodes": 9, "release_year": 2023, "avg_rating": 8.6 } // TODO: Put some videos for all episodes
           },
           "fun_fact": "Rachel Brosnahan had no stand-up comedy experience before the show and trained extensively to perform Midge's routines."
         },
@@ -526,6 +708,7 @@ const Movies =  [
           "imdb_score": 8.5,
           "metascore": 88,
           "type": "movie",
+          "genre": ["Animation", "Adventure", "Drama"],
           "fun_fact": "The 'Circle of Life' opening sequence took animators three years to create and features over 5,000 individually drawn frames."
         },
         {
@@ -537,8 +720,9 @@ const Movies =  [
           "imdb_score": 5.3,
           "metascore": 42,
           "type": "tv_show",
+          "genre": ["Action", "Adventure", "Fantasy"],
           "seasons": {
-            "1": { "episodes": 4, "release_year": 2022, "avg_rating": 5.5 }
+            "1": { "episodes": 4, "release_year": 2022, "avg_rating": 5.5 } // TODO: Put some videos for all episodes
           },
           "fun_fact": "Michelle Yeoh performed all her own stunts despite being 60 years old during filming."
         },
@@ -551,6 +735,7 @@ const Movies =  [
           "imdb_score": 7.8,
           "metascore": 94,
           "type": "movie",
+          "genre": ["Biography", "Crime", "Drama"],
           "fun_fact": "The de-aging technology used on the actors required them to wear special head rigs that added 2-3 hours to their daily makeup routine."
         },
         {
@@ -563,7 +748,7 @@ const Movies =  [
           "metascore": 79,
           "type": "tv_show",
           "seasons": {
-            "1": { "episodes": 7, "release_year": 2020, "avg_rating": 8.8 }
+            "1": { "episodes": 7, "release_year": 2020, "avg_rating": 8.8 } // TODO: Put some videos for all episodes
           },
           "fun_fact": "Chess grandmaster Garry Kasparov served as a consultant and helped choreograph all the chess scenes."
         },
@@ -587,10 +772,11 @@ const Movies =  [
           "imdb_score": 8.7,
           "metascore": 70,
           "type": "tv_show",
+          "genre": ["Action", "Adventure", "Sci-Fi"],
           "seasons": {
             "1": { "episodes": 8, "release_year": 2019, "avg_rating": 8.7 },
             "2": { "episodes": 8, "release_year": 2020, "avg_rating": 9.0 },
-            "3": { "episodes": 8, "release_year": 2023, "avg_rating": 8.3 }
+            "3": { "episodes": 8, "release_year": 2023, "avg_rating": 8.3 } // TODO: Put some videos for all episodes
           },
           "fun_fact": "Baby Yoda (Grogu) was kept completely secret during production - even most of the cast didn't know about the character until filming."
         },
@@ -599,7 +785,7 @@ const Movies =  [
             "description": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift.",
             "id": "MOV022",
             "thumbnail": "https://play-lh.googleusercontent.com/hZuesjSWMLsJK9UdfKut2LM4fVk7bfMoaGaRMt6gDR5mJSjv0AlbBUnR7PY0oBkzM1j5eoE9csuESEWzzNY",
-            "trailer_url": "https://www.youtube.com/watch?v=Ki4haFrqSrw",
+            "trailer_url": "https://www.youtube.com/watch?v=Ki4haFr5Srw",
             "imdb_score": 8.6,
             "metascore": 61,
             "type": "movie",
@@ -614,10 +800,11 @@ const Movies =  [
             "imdb_score": 8.5,
             "metascore": 88,
             "type": "tv_show",
+            "genre": ["Comedy"],
             "seasons": {
               "1": { "episodes": 6, "release_year": 2001, "avg_rating": 8.3 },
               "2": { "episodes": 6, "release_year": 2002, "avg_rating": 8.8 },
-              "Special": { "episodes": 2, "release_year": 2003, "avg_rating": 9.0 }
+              "Special": { "episodes": 2, "release_year": 2003, "avg_rating": 9.0 } // TODO: Put some videos for all episodes
             },
             "fun_fact": "Ricky Gervais based David Brent's character on real office managers he'd encountered during his corporate career."
           },
@@ -641,6 +828,7 @@ const Movies =  [
             "imdb_score": 8.2,
             "metascore": 79,
             "type": "tv_show",
+            "genre": ["Drama", "Horror", "Mystery"],
             "seasons": {
               "1": { "episodes": 6, "release_year": 2010, "avg_rating": 8.4 },
               "2": { "episodes": 13, "release_year": 2011, "avg_rating": 8.2 },
@@ -652,7 +840,7 @@ const Movies =  [
               "8": { "episodes": 16, "release_year": 2017, "avg_rating": 7.5 },
               "9": { "episodes": 16, "release_year": 2018, "avg_rating": 8.1 },
               "10": { "episodes": 22, "release_year": 2019, "avg_rating": 7.9 },
-              "11": { "episodes": 24, "release_year": 2021, "avg_rating": 7.6 }
+              "11": { "episodes": 24, "release_year": 2021, "avg_rating": 7.6 } // TODO: Put some videos for all episodes
             },
             "fun_fact": "The zombie extras were called 'walkers' on set and had their own green room where they could relax between takes."
           },
@@ -676,10 +864,11 @@ const Movies =  [
             "imdb_score": 8.2,
             "metascore": 68,
             "type": "tv_show",
+            "genre": ["Action", "Adventure", "Fantasy"],
             "seasons": {
               "1": { "episodes": 8, "release_year": 2019, "avg_rating": 8.2 },
               "2": { "episodes": 8, "release_year": 2021, "avg_rating": 8.4 },
-              "3": { "episodes": 8, "release_year": 2023, "avg_rating": 7.8 }
+              "3": { "episodes": 8, "release_year": 2023, "avg_rating": 7.8 } // TODO: Put some videos for all episodes
             },
             "fun_fact": "Henry Cavill performed nearly all of his own stunts, including sword fights, due to his experience with action roles."
           },
@@ -703,6 +892,7 @@ const Movies =  [
             "imdb_score": 8.2,
             "metascore": 71,
             "type": "tv_show",
+            "genre": ["Comedy"],
             "seasons": {
               "1": { "episodes": 7, "release_year": 1999, "avg_rating": 7.7 },
               "2": { "episodes": 21, "release_year": 1999, "avg_rating": 8.1 },
@@ -725,7 +915,7 @@ const Movies =  [
               "19": { "episodes": 20, "release_year": 2020, "avg_rating": 7.0 },
               "20": { "episodes": 20, "release_year": 2021, "avg_rating": 6.9 },
               "21": { "episodes": 20, "release_year": 2022, "avg_rating": 6.8 },
-              "22": { "episodes": 20, "release_year": 2023, "avg_rating": 6.7 }
+              "22": { "episodes": 20, "release_year": 2023, "avg_rating": 6.7 } // TODO: Put some videos for all episodes
             },
             "fun_fact": "Seth MacFarlane voices Peter, Stewie, Brian, and Quagmire, among others - sometimes having conversations with himself in the recording booth."
           },
@@ -738,6 +928,7 @@ const Movies =  [
             "imdb_score": 7.9,
             "metascore": 68,
             "type": "movie",
+            "genre": ["Drama"],
             "fun_fact": "The film's authentic depiction of communist-era Romania led to it being temporarily banned when first released."
           },
           {
@@ -750,8 +941,9 @@ const Movies =  [
             "metascore": null,
             "type": "tv_show",
             "seasons": {
-              "1": { "episodes": 4, "release_year": 2025, "avg_rating": null }
+              "1": { "episodes": 4, "release_year": 2025, "avg_rating": null } // TODO: Put some videos for all episodes
             },
+            "genre": ["Drama"],
             "fun_fact": "This series features an entirely unknown cast of teenage actors discovered through open casting calls across high schools."
           },
           {
@@ -763,6 +955,7 @@ const Movies =  [
             "imdb_score": null,
             "metascore": null,
             "type": "movie",
+            "genre": ["Animation", "Adventure", "Drama"],
             "fun_fact": "This marks the first time Disney has created a prequel to one of their animated classics using the photorealistic CGI technology."
           },
           {
@@ -774,6 +967,7 @@ const Movies =  [
             "imdb_score": 9.1,
             "metascore": 85,
             "type": "tv_show",
+            "genre": ["Animation", "Adventure", "Comedy"],
             "seasons": {
               "1": { "episodes": 11, "release_year": 2013, "avg_rating": 8.6 },
               "2": { "episodes": 10, "release_year": 2015, "avg_rating": 9.0 },
@@ -781,7 +975,7 @@ const Movies =  [
               "4": { "episodes": 10, "release_year": 2019, "avg_rating": 8.9 },
               "5": { "episodes": 10, "release_year": 2021, "avg_rating": 8.5 },
               "6": { "episodes": 10, "release_year": 2022, "avg_rating": 8.7 },
-              "7": { "episodes": 10, "release_year": 2023, "avg_rating": 8.8 }
+              "7": { "episodes": 10, "release_year": 2023, "avg_rating": 8.8 } // TODO: Put some videos for all episodes
             },
             "fun_fact": "The iconic 'Pickle Rick' episode was originally conceived as a throwaway joke in the writers' room before becoming one of the show's most famous episodes."
           },
@@ -794,6 +988,7 @@ const Movies =  [
             "imdb_score": 7.0,
             "metascore": 62,
             "type": "movie",
+            "genre": ["Comedy", "Fantasy"],
             "fun_fact": "The teddy bear was brought to life using a combination of CGI and an actual animatronic bear that required three puppeteers to operate."
           },
           {
@@ -805,6 +1000,7 @@ const Movies =  [
             "imdb_score": 6.3,
             "metascore": 48,
             "type": "movie",
+            "genre": ["Comedy", "Romance", "Fantasy"],
             "fun_fact": "The courtroom scenes were filmed in the actual Massachusetts courtroom where the real-life 'personhood' cases had been argued."
           },
           {
@@ -824,7 +1020,7 @@ const Movies =  [
               "5": { "episodes": 24, "release_year": 2008, "avg_rating": 8.8 },
               "6": { "episodes": 22, "release_year": 2009, "avg_rating": 8.6 },
               "7": { "episodes": 23, "release_year": 2010, "avg_rating": 8.4 },
-              "8": { "episodes": 22, "release_year": 2011, "avg_rating": 8.2 }
+              "8": { "episodes": 22, "release_year": 2011, "avg_rating": 8.2 } // TODO: Put some videos for all episodes
             },
             "fun_fact": "Hugh Laurie's American accent was so convincing that many American crew members were surprised to learn he was actually British."
           },
@@ -837,6 +1033,7 @@ const Movies =  [
             "imdb_score": null,
             "metascore": null,
             "type": "movie",
+            "genre": ["Comedy", "Family", "Fantasy"],
             "fun_fact": "This installment introduces motion capture technology to allow Ted to interact more naturally with human characters and environments."
           },
           {
@@ -857,7 +1054,7 @@ const Movies =  [
               "6": { "episodes": 16, "release_year": 2016, "avg_rating": 8.2 },
               "7": { "episodes": 16, "release_year": 2017, "avg_rating": 8.0 },
               "8": { "episodes": 16, "release_year": 2018, "avg_rating": 7.8 },
-              "9": { "episodes": 10, "release_year": 2019, "avg_rating": 7.9 }
+              "9": { "episodes": 10, "release_year": 2019, "avg_rating": 7.9 } // TODO: Put some videos for all episodes
             },
             "fun_fact": "Meghan Markle's role as Rachel Zane made her famous before she became the Duchess of Sussex, and the show experienced a massive surge in popularity after her royal engagement."
           }
@@ -872,7 +1069,7 @@ const Movies =  [
             "metascore": 81,
             "type": "movie",
             "release_year": 2015,
-            "genre": ["Romanian", "Historical Drama", "Dark Comedy"],
+            "genre": ["Drama", "Historical", "Adventure"],
             "fun_fact": "The film's dialogue was reconstructed from historical documents to authentically represent 19th-century Romanian speech patterns."
           },
           {
@@ -885,7 +1082,7 @@ const Movies =  [
             "metascore": 91,
             "type": "movie",
             "release_year": 2019,
-            "genre": ["Romanian", "Documentary", "Political Thriller"],
+            "genre": ["Documentary", "Crime", "Drama"],
             "fun_fact": "The documentary crew continued filming even as the health minister they were investigating unexpectedly resigned during an interview.",
             "awards": ["Nominated for Best Documentary Feature at the 93rd Academy Awards"]
           },
@@ -899,7 +1096,7 @@ const Movies =  [
             "metascore": 72,
             "type": "movie",
             "release_year": 2019,
-            "genre": ["Romanian", "Crime Comedy", "Absurdist"],
+            "genre": ["Crime", "Comedy", "Thriller"],
             "fun_fact": "The actors actually learned the real Silbo Gomero whistling language used by Canary Island shepherds."
           },
           {
@@ -915,9 +1112,9 @@ const Movies =  [
               "1": { "episodes": 12, "release_year": 2014, "avg_rating": 8.2 },
               "2": { "episodes": 12, "release_year": 2017, "avg_rating": 8.5 },
               "3": { "episodes": 12, "release_year": 2019, "avg_rating": 8.7 },
-              "4": { "episodes": 12, "release_year": 2021, "avg_rating": 8.8 }
+              "4": { "episodes": 12, "release_year": 2021, "avg_rating": 8.8 } // TODO: Put some videos for all episodes
             },
-            "genre": ["Romanian", "Crime Drama", "Noir"],
+            "genre": ["Crime", "Drama", "Thriller"],
             "fun_fact": "The show was originally developed as a comedy before evolving into a gritty crime drama during production."
           },
           {
@@ -931,9 +1128,9 @@ const Movies =  [
             "type": "tv_show",
             "seasons": {
               "1": { "episodes": 8, "release_year": 2023, "avg_rating": 7.9 },
-              "2": { "episodes": 8, "release_year": 2024, "avg_rating": null }
+              "2": { "episodes": 8, "release_year": 2024, "avg_rating": null } // TODO: Put some videos for all episodes
             },
-            "genre": ["Romanian", "Political Satire", "Dark Comedy"],
+            "genre": ["Comedy", "Drama", "Political"],
             "fun_fact": "Many of the absurd bureaucratic situations were based on real incidents reported in Romanian local newspapers."
           },
           {
@@ -946,7 +1143,7 @@ const Movies =  [
             "metascore": null,
             "type": "movie",
             "release_year": 2024,
-            "genre": ["Romanian", "Thriller", "Mystery"],
+            "genre": ["Thriller", "Mystery", "Drama"],
             "fun_fact": "The chess matches were choreographed by Romanian Grandmaster Mihail Marin to ensure technical accuracy."
           },
           {
@@ -959,9 +1156,9 @@ const Movies =  [
             "metascore": null,
             "type": "tv_show",
             "seasons": {
-              "1": { "episodes": 6, "release_year": 2024, "avg_rating": null }
+              "1": { "episodes": 6, "release_year": 2024, "avg_rating": null } // TODO: Put some videos for all episodes
             },
-            "genre": ["Romanian", "Gothic Horror", "Historical Drama"],
+            "genre": ["Horror", "Drama", "Mystery"],
             "fun_fact": "Filmed on location in authentic Transylvanian castles with permission from descendants of Vlad the Impaler."
           },
           {
@@ -974,7 +1171,7 @@ const Movies =  [
             "metascore": 65,
             "type": "movie",
             "release_year": 2023,
-            "genre": ["Romanian", "Magical Realism", "Dark Comedy"],
+            "genre": ["Comedy", "Drama", "Fantasy"],
             "fun_fact": "The hotel set was constructed inside an actual abandoned Communist-era resort on the Black Sea coast."
           },
           {
@@ -988,13 +1185,12 @@ const Movies =  [
             "type": "tv_show",
             "seasons": {
               "1": { "episodes": 6, "release_year": 2023, "avg_rating": 7.8 },
-              "2": { "episodes": 6, "release_year": 2024, "avg_rating": null }
+              "2": { "episodes": 6, "release_year": 2024, "avg_rating": null } // TODO: Put some videos for all episodes
             },
-            "genre": ["Romanian", "Folk Horror", "Mystery"],
+            "genre": ["Horror", "Mystery", "Thriller"],
             "fun_fact": "The show incorporates authentic Romanian folk rituals and superstitions rarely seen in Western media."
           }
     
     ]
   
 export default Movies;
-  

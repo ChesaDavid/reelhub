@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import realhublog from "../assets/logo.png";
 import { Link } from "react-router-dom";
-
+import Popup from "../components/Popup";
 function HomePage() {
     const welcome = [
         "Hello World!",
@@ -54,8 +54,6 @@ function HomePage() {
               <p className="text-gray-500 text-center">Discover trending TV series and the best shows to binge-watch.</p>
             </div>
           </div>
-          <p className="mb-20 max-h-screens"></p>
-          
         </div>
     );
 }

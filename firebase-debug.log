@@ -1,0 +1,227 @@
+[debug] [2025-04-06T16:09:18.784Z] ----------------------------------------------------------------------
+[debug] [2025-04-06T16:09:18.787Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\chesa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-04-06T16:09:18.787Z] CLI Version:   14.1.0
+[debug] [2025-04-06T16:09:18.787Z] Platform:      win32
+[debug] [2025-04-06T16:09:18.788Z] Node Version:  v20.13.1
+[debug] [2025-04-06T16:09:18.788Z] Time:          Sun Apr 06 2025 19:09:18 GMT+0300 (Eastern European Summer Time)
+[debug] [2025-04-06T16:09:18.788Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-06T16:09:18.798Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-06T16:09:18.799Z] > authorizing via signed-in user (david.chesa.it@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\chesa\OneDrive\Desktop\ReelHub\reelhub
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-04-06T16:10:01.903Z] Checked if tokens are valid: false, expires at: 1723942574633
+[debug] [2025-04-06T16:10:01.904Z] Checked if tokens are valid: false, expires at: 1723942574633
+[debug] [2025-04-06T16:10:01.904Z] > refreshing access token with scopes: []
+[debug] [2025-04-06T16:10:01.905Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-04-06T16:10:01.906Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-04-06T16:10:02.081Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-04-06T16:10:02.082Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-04-06T16:10:02.090Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-04-06T16:10:02.559Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-04-06T16:10:02.560Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project reelhub-6bc80 (reelhub) 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-04-06T16:10:05.722Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:05.722Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:05.722Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/reelhub-6bc80/billingInfo [none]
+[debug] [2025-04-06T16:10:06.663Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/reelhub-6bc80/billingInfo 200
+[debug] [2025-04-06T16:10:06.663Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/reelhub-6bc80/billingInfo {"name":"projects/reelhub-6bc80/billingInfo","projectId":"reelhub-6bc80","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-04-06T16:10:06.663Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:06.664Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:06.664Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com [none]
+[debug] [2025-04-06T16:10:06.664Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com x-goog-quota-user=projects/reelhub-6bc80
+[debug] [2025-04-06T16:10:07.706Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com 200
+[debug] [2025-04-06T16:10:07.706Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com [omitted]
+[warn] !  dataconnect: missing required API sqladmin.googleapis.com. Enabling now... 
+[debug] [2025-04-06T16:10:07.706Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:07.706Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:07.707Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com:enable [none]
+[debug] [2025-04-06T16:10:07.707Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com:enable x-goog-quota-user=projects/reelhub-6bc80
+[debug] [2025-04-06T16:10:08.875Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com:enable 200
+[debug] [2025-04-06T16:10:08.875Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com:enable [omitted]
+[debug] [2025-04-06T16:10:18.885Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:18.885Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:10:18.885Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com [none]
+[debug] [2025-04-06T16:10:18.885Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com x-goog-quota-user=projects/reelhub-6bc80
+[debug] [2025-04-06T16:10:19.854Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com 200
+[debug] [2025-04-06T16:10:19.854Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/sqladmin.googleapis.com [omitted]
+[info] +  dataconnect: required API sqladmin.googleapis.com is enabled 
+[info] +  Wrote dataconnect\dataconnect.yaml 
+[info] +  Wrote dataconnect\schema\schema.gql 
+[info] +  Wrote dataconnect\connector\connector.yaml 
+[info] +  Wrote dataconnect\connector\queries.gql 
+[info] +  Wrote dataconnect\connector\mutations.gql 
+[info] +  Detected WEB app in directory C:\Users\chesa\OneDrive\Desktop\ReelHub\reelhub 
+[info] i  Detected react app. Enabling react generated SDKs. 
+[info] i  Writing your new SDK configuration to C:\Users\chesa\OneDrive\Desktop\ReelHub\reelhub\dataconnect\connector/connector.yaml 
+[info] +  Wrote dataconnect\connector\connector.yaml 
+[info] i  dataconnect: downloading dataconnect-emulator-2.1.0.exe... {"metadata":{"emulator":{"name":"dataconnect"},"message":"downloading dataconnect-emulator-2.1.0.exe..."}}
+[debug] [2025-04-06T16:11:35.023Z] >>> [apiv2][query] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-v2.1.0 
+[debug] [2025-04-06T16:11:35.348Z] <<< [apiv2][status] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-v2.1.0 200
+[debug] [2025-04-06T16:11:35.348Z] <<< [apiv2][body] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-v2.1.0 [stream]
+[debug] [2025-04-06T16:11:57.445Z] defaultcredentials: writing to file C:\Users\chesa\AppData\Roaming\firebase\david_chesa.it_gmail.com_application_default_credentials.json
+[debug] [2025-04-06T16:11:57.446Z] Setting GAC to C:\Users\chesa\AppData\Roaming\firebase\david_chesa.it_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"dataconnect"},"message":"Setting GAC to C:\\Users\\chesa\\AppData\\Roaming\\firebase\\david_chesa.it_gmail.com_application_default_credentials.json"}}
+[info] I0406 19:11:57.643793   24728 codegen.go:82] [connector "default" javascriptSdk] Generating sources into "C:\\Users\\chesa\\OneDrive\\Desktop\\ReelHub\\reelhub\\dataconnect-generated\\js\\default-connector"
+I0406 19:11:57.647993   24728 generate.go:40] Generated all sources. Writing them to disk...
+I0406 19:11:57.660027   24728 collector.go:107] connector "default" javascriptSdk wrote into "C:\\Users\\chesa\\OneDrive\\Desktop\\ReelHub\\reelhub\\dataconnect-generated\\js\\default-connector"
+Generated sources: react\index.cjs.js [0B] package.json [860B] react\index.d.ts [228B] esm\package.json [17B] index.cjs.js [145B] README.md [2774B] react\package.json [468B] react\esm\package.json [17B] react\esm\index.esm.js [0B] index.d.ts [246B] esm\index.esm.js [110B] react\README.md [5417B] 
+I0406 19:11:57.683121   24728 installsdk.go:80] Running command: C:\Program Files\nodejs\npm.cmd install file:dataconnect-generated\js\default-connector
+
+[info] i  Generated SDK code for default 
+[info] i  Visit https://firebase.google.com/docs/data-connect/web-sdk#react for more information on how to set up React Generated SDKs for Firebase Data Connect 
+[info] +  If you'd like to add more generated SDKs to your app your later, run firebase init dataconnect:sdk again 
+[info] i  If you'd like to provision a CloudSQL Postgres instance on the Firebase Data Connect no-cost trial:
+1. Please upgrade to the pay-as-you-go (Blaze) billing plan. Visit the following page:
+     https://console.firebase.google.com/project/reelhub-6bc80/usage/details
+2. Run firebase init dataconnect again to configure the Cloud SQL instance.
+3. Run firebase deploy --only dataconnect to deploy your Data Connect service. 
+[info] 
+=== Firestore Setup
+[debug] [2025-04-06T16:12:07.995Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:07.995Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:07.995Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/firestore.googleapis.com [none]
+[debug] [2025-04-06T16:12:07.995Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/firestore.googleapis.com x-goog-quota-user=projects/reelhub-6bc80
+[debug] [2025-04-06T16:12:09.014Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/firestore.googleapis.com 200
+[debug] [2025-04-06T16:12:09.014Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/reelhub-6bc80/services/firestore.googleapis.com [omitted]
+[debug] [2025-04-06T16:12:09.014Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:09.014Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:09.014Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default) [none]
+[debug] [2025-04-06T16:12:09.340Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default) 200
+[debug] [2025-04-06T16:12:09.340Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default) {"name":"projects/reelhub-6bc80/databases/(default)","uid":"89989df1-d521-4cfa-8e5e-cfaac5cc0420","createTime":"2025-04-06T16:03:29.874766Z","updateTime":"2025-04-06T16:03:29.874766Z","locationId":"europe-west10","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-04-06T16:03:29.874766Z","appEngineIntegrationMode":"DISABLED","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"etag":"IN/FmI3mw4wDMNnzoKDkw4wD"}
+[debug] [2025-04-06T16:12:09.341Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-04-06T16:12:09.341Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-04-06T16:12:09.341Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-06T16:12:09.341Z] > authorizing via signed-in user (david.chesa.it@gmail.com)
+[debug] [2025-04-06T16:12:09.341Z] [iam] checking project reelhub-6bc80 for permissions ["firebase.projects.get"]
+[debug] [2025-04-06T16:12:09.341Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:09.341Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:09.342Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/reelhub-6bc80:testIamPermissions [none]
+[debug] [2025-04-06T16:12:09.342Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/reelhub-6bc80:testIamPermissions x-goog-quota-user=projects/reelhub-6bc80
+[debug] [2025-04-06T16:12:09.342Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/reelhub-6bc80:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-04-06T16:12:10.181Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/reelhub-6bc80:testIamPermissions 200
+[debug] [2025-04-06T16:12:10.181Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/reelhub-6bc80:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-04-06T16:12:18.286Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:18.286Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:18.286Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/reelhub-6bc80/releases pageSize=10&pageToken=
+[debug] [2025-04-06T16:12:19.282Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/reelhub-6bc80/releases 200
+[debug] [2025-04-06T16:12:19.283Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/reelhub-6bc80/releases {"releases":[{"name":"projects/reelhub-6bc80/releases/cloud.firestore","rulesetName":"projects/reelhub-6bc80/rulesets/a5f0db48-d022-42e4-bdd5-4808929b5e85","createTime":"2025-04-06T16:03:36.338824Z","updateTime":"2025-04-06T16:03:36.338824Z"}]}
+[debug] [2025-04-06T16:12:19.283Z] Found ruleset: projects/reelhub-6bc80/rulesets/a5f0db48-d022-42e4-bdd5-4808929b5e85
+[debug] [2025-04-06T16:12:19.283Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:19.283Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:19.283Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/reelhub-6bc80/rulesets/a5f0db48-d022-42e4-bdd5-4808929b5e85 [none]
+[debug] [2025-04-06T16:12:19.992Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/reelhub-6bc80/rulesets/a5f0db48-d022-42e4-bdd5-4808929b5e85 200
+[debug] [2025-04-06T16:12:19.992Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/reelhub-6bc80/rulesets/a5f0db48-d022-42e4-bdd5-4808929b5e85 [omitted]
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-04-06T16:12:21.528Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:21.528Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:21.528Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:21.528Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:21.528Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2025-04-06T16:12:21.530Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2025-04-06T16:12:21.801Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2025-04-06T16:12:21.801Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2025-04-06T16:12:21.813Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2025-04-06T16:12:21.813Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/reelhub-6bc80/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/reelhub-6bc80/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] 
+=== Apphosting Setup
+[debug] [2025-04-06T16:12:21.816Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:21.816Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:21.816Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/reelhub-6bc80/billingInfo [none]
+[debug] [2025-04-06T16:12:22.525Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/reelhub-6bc80/billingInfo 200
+[debug] [2025-04-06T16:12:22.525Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/reelhub-6bc80/billingInfo {"name":"projects/reelhub-6bc80/billingInfo","projectId":"reelhub-6bc80","billingAccountName":"","billingEnabled":false}
+[info] i  Writing default settings to apphosting.yaml... 
+[info] +  Wrote apphosting.yaml 
+[info] +  Create a new App Hosting backend with `firebase apphosting:backends:create` 
+[info] 
+=== Hosting Setup
+[debug] [2025-04-06T16:12:22.528Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:22.529Z] Checked if tokens are valid: true, expires at: 1743959401082
+[debug] [2025-04-06T16:12:22.529Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/reelhub-6bc80 [none]
+[debug] [2025-04-06T16:12:22.925Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/reelhub-6bc80 200
+[debug] [2025-04-06T16:12:22.925Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/reelhub-6bc80 {"projectId":"reelhub-6bc80","projectNumber":"475463314151","displayName":"reelhub","name":"projects/reelhub-6bc80","resources":{"hostingSite":"reelhub-6bc80"},"state":"ACTIVE","etag":"1_6c781d66-1a7d-4f2f-843d-cbe9687b642a"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-04-06T16:12:58.869Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2025-04-06T16:12:59.330Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2025-04-06T16:12:59.330Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"11.6.0","browserURL":"https://www.gstatic.com/firebasejs/11.6.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/11.6.0/firebase.tgz"},"live":{"version":"11.6","browserURL":"https://www.gstatic.com/firebasejs/live/11.6/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/11.6/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/11.6.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/11.6.0/firebase-auth/cordova.js","auth/web-extension":"https://www.gstatic.com/firebasejs/11.6.0/firebase-auth/web-extension.js","functions":"https://www.gstatic.com/firebasejs/11.6.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/11.6.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/11.6.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/11.6.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js","vertexai":"https://www.gstatic.com/firebasejs/11.6.0/firebase-vertexai.js","data-connect":"https://www.gstatic.com/firebasejs/11.6.0/firebase-data-connect.js","firestore.memory":"https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.memory.js"}}
+[info] +  Wrote (public)/index.html 
+[info] 
+[info] i  Detected a .git folder at C:\Users\chesa\OneDrive\Desktop\ReelHub\reelhub 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=535156198&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2025-04-06T16:13:17.952Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2025-04-06T16:13:17.953Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2025-04-06T16:13:18.282Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2025-04-06T16:13:18.283Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2025-04-06T16:13:18.286Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2025-04-06T16:13:18.664Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2025-04-06T16:13:18.664Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"ChesaDavid","id":140747134,"node_id":"U_kgDOCGOhfg","avatar_url":"https://avatars.githubusercontent.com/u/140747134?v=4","gravatar_id":"","url":"https://api.github.com/users/ChesaDavid","html_url":"https://github.com/ChesaDavid","followers_url":"https://api.github.com/users/ChesaDavid/followers","following_url":"https://api.github.com/users/ChesaDavid/following{/other_user}","gists_url":"https://api.github.com/users/ChesaDavid/gists{/gist_id}","starred_url":"https://api.github.com/users/ChesaDavid/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/ChesaDavid/subscriptions","organizations_url":"https://api.github.com/users/ChesaDavid/orgs","repos_url":"https://api.github.com/users/ChesaDavid/repos","events_url":"https://api.github.com/users/ChesaDavid/events{/privacy}","received_events_url":"https://api.github.com/users/ChesaDavid/received_events","type":"User","user_view_type":"private","site_admin":false,"name":"ChesaDavid","company":null,"blog":"","location":"Timișoara","email":null,"hireable":null,"bio":"Currently in 2024 I am in my last year of high school and I dream of big things to come at University (hopefully at TU Eindhoven CSE)","twitter_username":null,"notification_email":null,"public_repos":21,"public_gists":0,"followers":1,"following":2,"created_at":"2023-07-27T18:04:25Z","updated_at":"2025-03-05T17:00:21Z","private_gists":0,"total_private_repos":6,"owned_private_repos":6,"disk_usage":304985,"collaborators":3,"two_factor_authentication":true,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] +  Success! Logged into GitHub as ChesaDavid 
+[info] 
+[debug] [2025-04-06T16:13:30.531Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2025-04-06T16:13:30.787Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2025-04-06T16:13:30.787Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest","status":"404"}
+[info] 
+[info] 
+[error] !  The provided authorization cannot be used with this repository. If this repository is in an organization, did you remember to grant access? 
+[info] 
+[info] i  Action required: Visit this URL to ensure access has been granted to the appropriate organization(s) for the Firebase CLI GitHub OAuth App: 
+[info] https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+[info] 
+[debug] [2025-04-06T16:14:50.688Z] >>> [apiv2][query] GET https://api.github.com/repos/user/actions/secrets/public-key type=owner
+[debug] [2025-04-06T16:14:50.968Z] <<< [apiv2][status] GET https://api.github.com/repos/user/actions/secrets/public-key 404
+[debug] [2025-04-06T16:14:50.969Z] <<< [apiv2][body] GET https://api.github.com/repos/user/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest","status":"404"}
+[info] 
+[info] 
+[error] !  The provided authorization cannot be used with this repository. If this repository is in an organization, did you remember to grant access? 
+[info] 
+[info] i  Action required: Visit this URL to ensure access has been granted to the appropriate organization(s) for the Firebase CLI GitHub OAuth App: 
+[info] https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+[info] 
+[debug] [2025-04-06T16:15:02.088Z] >>> [apiv2][query] GET https://api.github.com/repos/ChesaDavid/actions/secrets/public-key type=owner
+[debug] [2025-04-06T16:15:02.542Z] <<< [apiv2][status] GET https://api.github.com/repos/ChesaDavid/actions/secrets/public-key 404
+[debug] [2025-04-06T16:15:02.543Z] <<< [apiv2][body] GET https://api.github.com/repos/ChesaDavid/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest","status":"404"}
+[info] 
+[info] 
+[error] !  The provided authorization cannot be used with this repository. If this repository is in an organization, did you remember to grant access? 
+[info] 
+[info] i  Action required: Visit this URL to ensure access has been granted to the appropriate organization(s) for the Firebase CLI GitHub OAuth App: 
+[info] https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+[info] 

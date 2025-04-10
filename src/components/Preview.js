@@ -6,21 +6,22 @@ export default function PreviewMovie({ Movie, onClose }) {
     const isTvShow = Movie.id.includes("TV");
 
     return (
+        // scroll
         <div
             className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
             onClick={onClose}
         >
             <div
-                className="bg-gray-800 flex flex-row gap-8 p-6 rounded-2xl shadow-lg w-full max-w-3xl relative"
+                className="bg-gray-800 flex flex-row gap-8 p-6 rounded-2xl shadow-lg w-full max-w-3xl max-h-[90vh] relative"
                 onClick={(e) => e.stopPropagation()}
             >
                 <img
                     src={Movie.thumbnail}
                     alt={Movie.title}
-                    className="w-1/3 rounded-lg shadow-md object-cover"
+                    className="w-1/3 rounded-lg shadow-md object-cover h-fit"
                 />
 
-                <div className="flex-1 flex flex-col justify-between">
+                <div className="flex-1 flex flex-col justify-between overflow-y-auto pr-4">
                     <div>
                         <h2 className="text-3xl font-bold text-white">{Movie.title}</h2>
                         <p className="mt-3 text-gray-400">{Movie.description}</p>
@@ -44,7 +45,18 @@ export default function PreviewMovie({ Movie, onClose }) {
                                 <span className="font-bold">{Movie.metascore}</span>
                             </div>
                         </div>
-
+                        <div>
+                            <span className="text-gray-400">Genres:</span>
+                            <span className="font-bold text-white ml-2">
+                                {Movie.genre.map((m)=>{
+                                    return (
+                                        <span key={m} className="mr-2 bg-gray-700 rounded px-2 py-1">
+                                            {m}
+                                        </span>
+                                    );
+                                })}
+                            </span>
+                        </div>
                         {isTvShow && (
                             <div className="mt-5 text-white">
                                 <h3 className="text-gray-400 text-lg font-medium mb-2 text-center">
