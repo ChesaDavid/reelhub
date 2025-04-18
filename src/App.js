@@ -15,7 +15,7 @@ import Register from './pages/Register';
 import TopIMBD from './pages/TopIMBD';
 import Favorites from './pages/Favorites';
 import Popup from "./components/Popup";
-
+import Special from './pages/Special';
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +33,8 @@ function App() {
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/top-imdb' element={<TopIMBD/>}></Route>
         <Route path='/favourites' element={<Favorites/>}></Route>
+        <Route path='/movies/MOV036' element={<Special/>}></Route>
+        <Route path='/tv-series/MOV036' element={<Special/>}></Route>
         <Route path='*' element={<Error/>}></Route>
         {/* temporary */}
         <Route path='/1220' element={<VideoRevlame/>}></Route>

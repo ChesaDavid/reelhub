@@ -5,6 +5,8 @@ import { Link ,Navigate} from "react-router-dom";
 import SearchItems from "./SearchItem";
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../firebase";
+import Promo from "../assets/coderLive.mp4";
+import funny from "../assets/bunaziuainternatiune.mp4";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
@@ -41,6 +43,12 @@ function Navbar() {
         break;
       case 'bacalaureat':
         window.open("https://hotnews.ro/wp-content/uploads/2024/08/Marcel-Ciolacu-la-Congresul-PSD-2024.jpg", '_blank');
+        break;
+      case 'coder':
+        window.open(Promo, '_blank');
+        break;
+      case 'clip funny cu mine':
+        window.open(funny, '_blank');
         break;
       default:
         break;

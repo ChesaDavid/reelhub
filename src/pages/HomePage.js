@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import realhublog from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import Popup from "../components/Popup";
 function HomePage() {
     const welcome = [
         "Hello World!",

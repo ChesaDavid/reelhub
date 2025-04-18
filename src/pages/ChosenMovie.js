@@ -1,28 +1,38 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Movies from "./MoviesAndSeriesList";
-import { app ,db} from "../firebase";
+import { app, db } from "../firebase";
 import { getAuth } from "firebase/auth";
-import { collection, addDoc ,doc,getDoc, setDoc, updateDoc} from "firebase/firestore"; 
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 export default function ChosenMovie() {
-
   const { id } = useParams();
   const playerRef = useRef(null);
   const movie = Movies.find((movie) => movie.id === id);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
-  const adCounter = useRef(3);
+  const adCounter = useRef(2);
   const [canPlayVideo, setCanPlayVideo] = useState(false);
   const [showAdButton, setShowAdButton] = useState(true);
   const [isTvShow, setIsTvShow] = useState(false);
   const [seasonsArray, setSeasonsArray] = useState([]);
-  const [selectedSeason, setSelectedSeason] = useState(1);
+  const [selectedSeason, setSelectedSeason] = useState(null);
   const ultimulClick = useRef(null);
-  const [selevtedEpisode, setSelectedEpisode] = useState(1);
+  const [selevtedEpisode, setSelectedEpisode] = useState(null);
   const [genre, setGenre] = useState([]);
   const [user, setUser] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [documentContent, setDocumentContent] = useState(null);
+  const [currentEpisodeTitle, setCurrentEpisodeTitle] = useState("");
+  const [isLoadingEpisode, setIsLoadingEpisode] = useState(false);
+  const [videoError, setVideoError] = useState(null);
+  const [currentSeason, setCurrentSeason] = useState(null);
   const auth = getAuth(app);
   useEffect(() => {
     if (!user) {
@@ -35,7 +45,8 @@ export default function ChosenMovie() {
               const userData = doc.data();
               console.log("User data:", userData);
               setDocumentContent(userData);
-            }});
+            }
+          });
         } else {
           setUser(null);
         }
@@ -44,13 +55,13 @@ export default function ChosenMovie() {
     }
   }, [user]);
 
-  useEffect(()=>{
-    if(documentContent && documentContent.items){
-      const isFav = documentContent.items.some(item => item === movie.id);
+  useEffect(() => {
+    if (documentContent && documentContent.items) {
+      const isFav = documentContent.items.some((item) => item === movie.id);
       setIsFavorite(isFav);
       console.log("Is favorite:", isFav);
     }
-  },[movie,documentContent])
+  }, [movie, documentContent]);
 
   useEffect(() => {
     if (movie?.id.toLowerCase().includes("tv")) {
@@ -60,6 +71,19 @@ export default function ChosenMovie() {
       setIsTvShow(false);
     }
   }, [movie]);
+
+  useEffect(() => {
+    if (selectedSeason && seasonsArray.length > 0) {
+      const season = seasonsArray.find(
+        ([number]) => parseInt(number) === parseInt(selectedSeason)
+      );
+      if (season) {
+        setCurrentSeason(season);
+        setSelectedEpisode(null);
+        setCurrentEpisodeTitle("");
+      }
+    }
+  }, [selectedSeason, seasonsArray]);
 
   const ads = [
     "https://dojo.mbd.one/app/coderdojo-@haufe.group/seria-3.2/activitate",
@@ -73,64 +97,120 @@ export default function ChosenMovie() {
     );
     return match ? match[1] : null;
   }
-  const currentSeason = seasonsArray.find(
-    ([seasonNumber]) => seasonNumber === selectedSeason
-  );
+
+  const handleSwitch = useCallback(() => {
+    if (movie?.seasons) {
+      const seasonsData = Object.entries(movie.seasons).sort(
+        (a, b) => parseInt(a[0]) - parseInt(b[0])
+      );
+      setSeasonsArray(seasonsData);
+      if (!selectedSeason && seasonsData.length > 0) {
+        const firstSeason = parseInt(seasonsData[0][0]);
+        setSelectedSeason(firstSeason);
+        setCurrentSeason(seasonsData[0]);
+      }
+    }
+  }, [movie?.seasons]);
 
   useEffect(() => {
-    if (!window.YT && movie?.trailer_url) {
-      const script = document.createElement("script");
-      script.src = "https://www.youtube.com/iframe_api";
-      script.async = true;
-      document.body.appendChild(script);
-
-      script.onload = () => {
-        console.log("YouTube API Loaded");
-        createPlayer();
-      };
-    } else if (movie?.trailer_url) {
-      createPlayer();
+    if (movie?.id?.toLowerCase().includes("tv")) {
+      setIsTvShow(true);
+      handleSwitch();
+    } else {
+      setIsTvShow(false);
     }
-  }, [movie?.trailer_url, canPlayVideo]);
+  }, [movie, handleSwitch]);
 
-  const createPlayer = () => {
-    if (!canPlayVideo) return;
+  useEffect(() => {
+    let cleanup = false;
 
-    const videoId = getYouTubeVideoId(movie.trailer_url);
-    if (!videoId) return;
+    const initYouTube = () => {
+      if (!window.YT) {
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        script.async = true;
+        document.body.appendChild(script);
 
-    const initializePlayer = () => {
+        return new Promise((resolve) => {
+          window.onYouTubeIframeAPIReady = () => resolve();
+        });
+      }
+      return Promise.resolve();
+    };
+
+    const setupPlayer = async () => {
+      if (!canPlayVideo || cleanup) return;
+
+      await initYouTube();
+
+      let videoId;
+      if (selevtedEpisode && currentSeason?.[1]?.episode_clips) {
+        const clipUrl = currentSeason[1].episode_clips[selevtedEpisode - 1];
+        videoId = getYouTubeVideoId(clipUrl);
+      } else if (movie?.trailer_url) {
+        videoId = getYouTubeVideoId(movie.trailer_url);
+      }
+
+      if (!videoId || !window.YT?.Player || cleanup) return;
+
+      if (playerRef.current?.destroy) {
+        playerRef.current.destroy();
+      }
+
       playerRef.current = new window.YT.Player("youtube-player", {
         videoId,
-        playerVars: { rel: 0, showinfo: 0 },
+        playerVars: {
+          rel: 0,
+          showinfo: 0,
+          controls: 1,
+          autoplay: 1,
+        },
         events: {
           onReady: (event) => {
-            console.log("YouTube Player Ready");
-            playerRef.current = event.target;
-            setIsPlayerReady(true);
+            if (!cleanup) {
+              playerRef.current = event.target;
+              setIsPlayerReady(true);
+            }
+          },
+          onError: (error) => {
+            if (!cleanup) {
+              console.error("YouTube Player Error:", error);
+              setIsPlayerReady(false);
+            }
           },
         },
       });
     };
 
-    if (window.YT && window.YT.Player) {
-      initializePlayer();
-    } else {
-      window.onYouTubeIframeAPIReady = initializePlayer;
-    }
-  };
+    setupPlayer();
+
+    return () => {
+      cleanup = true;
+      if (playerRef.current?.destroy) {
+        playerRef.current.destroy();
+      }
+    };
+  }, [canPlayVideo, selevtedEpisode, currentSeason, movie?.trailer_url]);
 
   const handleAdClick = () => {
+    const currentTime = Date.now();
+    const timeSinceLastClick = currentTime - (ultimulClick.current || 0);
+
     if (adCounter.current > 0) {
       const randomAd = ads[Math.floor(Math.random() * ads.length)];
       window.open(randomAd, "_blank");
       adCounter.current -= 1;
+    } else if (timeSinceLastClick >= 5000) {
+      const randomAd = ads[Math.floor(Math.random() * ads.length)];
+      window.open(randomAd, "_blank");
+      ultimulClick.current = currentTime;
     } else {
-      ultimulClick.current = Date.now();
+      ultimulClick.current = currentTime;
       setCanPlayVideo(true);
       setShowAdButton(false);
     }
   };
+
   useEffect(() => {
     if (movie?.genre) {
       setGenre(movie.genre);
@@ -186,46 +266,83 @@ export default function ChosenMovie() {
     return recommendationComponent;
   };
 
-  const handleSwitch = () => {
-    if (movie.seasons) {
-      setSeasonsArray(Object.entries(movie.seasons));
+  const handleAddToFavorites = async (e) => {
+    if (!user) return;
+
+    try {
+      const UserFavRef = doc(db, "favorites", user.uid);
+      const docSnap = await getDoc(UserFavRef);
+      if (docSnap.exists()) {
+        if (!isFavorite) {
+          const currentFavorites = docSnap.data().items || [];
+          if (!currentFavorites.some((item) => item.id === movie.id)) {
+            await updateDoc(UserFavRef, {
+              items: [...currentFavorites, movie.id],
+            });
+            setIsFavorite(true);
+          }
+        } else {
+          const currentFavorites = docSnap.data().items || [];
+          const updatedFavorites = currentFavorites.filter(
+            (item) => item !== movie.id
+          );
+          await updateDoc(UserFavRef, {
+            items: updatedFavorites,
+          });
+          setIsFavorite(false);
+        }
+      } else {
+        await setDoc(UserFavRef, {
+          items: [movie.id],
+        });
+      }
+      console.log("Succesfuly uodate the favorites");
+    } catch {
+      console.log("Error with the db");
     }
   };
 
-  const handleAddToFavorites = async (e)=>{
-    
-    if(!user) return;
-    
-    try{
-      const UserFavRef = doc(db,"favorites",user.uid);
-      const docSnap = await getDoc(UserFavRef);
-      if(docSnap.exists()){
-        if(!isFavorite){
-          const currentFavorites = docSnap.data().items || [];
-          if(!currentFavorites.some(item => item.id===movie.id)){
-          await updateDoc(UserFavRef,{
-            items: [...currentFavorites,movie.id]
-          })
-          setIsFavorite(true);
+  const handleEpisodeSelect = useCallback(
+    async (episodeNumber, episodeTitle) => {
+      setIsLoadingEpisode(true);
+      setVideoError(null);
+
+      try {
+        setSelectedEpisode(episodeNumber);
+        setCurrentEpisodeTitle(episodeTitle || "");
+
+        if (currentSeason?.[1]?.episode_clips) {
+          const videoUrl = currentSeason[1].episode_clips[episodeNumber - 1];
+          if (videoUrl && playerRef.current?.loadVideoById) {
+            const videoId = getYouTubeVideoId(videoUrl);
+            if (videoId) {
+              await playerRef.current.loadVideoById(videoId);
+              setIsPlayerReady(true);
+            }
           }
-        }else{
-          const currentFavorites = docSnap.data().items || [];
-          const updatedFavorites = currentFavorites.filter(item => item !== movie.id);
-          await updateDoc(UserFavRef,{
-            items: updatedFavorites
-          })
-          setIsFavorite(false);
         }
-      }else{
-        await setDoc(UserFavRef,{
-          items: [movie.id]
-        })
+      } catch (error) {
+        setVideoError("Failed to load episode");
+        console.error("Episode loading error:", error);
+      } finally {
+        setIsLoadingEpisode(false);
       }
-      console.log("Succesfuly uodate the favorites");
-    }catch{
-      console.log("Error with the db");
+    },
+    [currentSeason]
+  );
+
+  const handleVideoSourceChange = (videoId) => {
+    if (playerRef.current && videoId) {
+      playerRef.current.loadVideoById(videoId);
     }
-  }
+  };
+
+  const handleSeasonSelect = (seasonNumber) => {
+    setSelectedSeason(parseInt(seasonNumber));
+    setSelectedEpisode(null);
+    setCurrentEpisodeTitle("");
+    setIsPlayerReady(false);
+  };
 
   if (!movie) {
     return (
@@ -288,57 +405,67 @@ export default function ChosenMovie() {
             <p className="text-lg text-gray-300 leading-relaxed">
               {movie.description}
             </p>
-            {/* TODO: TO make the seasons and episodes */}
-            {isTvShow && <p>Currently showing : {
-              (currentSeason && currentSeason[1].episodes) ? `Season ${selectedSeason}, Episode ${selevtedEpisode}` : "Thrailer"
-              }</p>}
-            {movie.trailer_url ? (
+            {isTvShow && (
+              <p className="text-gray-400">
+                Currently showing:{" "}
+                {currentSeason > 0
+                  ? `Season ${selectedSeason}, Episode ${selevtedEpisode}${
+                      currentEpisodeTitle ? ` - ${currentEpisodeTitle}` : ""
+                    }`
+                  : "Trailer"}
+              </p>
+            )}
+            {movie.trailer_url ||
+            (currentSeason && currentSeason[1].episode_clips) ? (
               canPlayVideo ? (
-                <div
-                  id="youtube-player"
-                  className="relative w-full aspect-video rounded-lg overflow-hidden bg-black"
-                >
-                  {!isPlayerReady && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900">
-                      <div className="w-12 h-12 border-4 border-t-transparent border-indigo-500 rounded-full animate-spin"></div>
-                      <p className="mt-4 text-gray-300">Loading trailer...</p>
-                    </div>
-                  )}
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black">
+                  <div id="youtube-player" className="relative w-full h-full">
+                    {!isPlayerReady && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900">
+                        <div className="w-12 h-12 border-4 border-t-transparent border-indigo-500 rounded-full animate-spin"></div>
+                        <p className="mt-4 text-gray-300">
+                          {selevtedEpisode
+                            ? "Loading episode..."
+                            : "Loading trailer..."}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <div className="w-full aspect-video bg-black flex flex-col items-center justify-center">
-                  <p className="text-gray-300 mb-4">Watch the trailer</p>
+                  <p className="text-gray-300 mb-4">
+                    {selevtedEpisode ? "Watch Episode" : "Watch Trailer"}
+                  </p>
                   {showAdButton && (
-                    <>
-                      <button
-                        onClick={handleAdClick}
-                        className="focus:outline-none transition-transform hover:scale-110 mb-4"
+                    <button
+                      onClick={handleAdClick}
+                      className="focus:outline-none transition-transform hover:scale-110 mb-4"
+                    >
+                      <svg
+                        width="80"
+                        height="80"
+                        viewBox="0 0 64 64"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <svg
-                          width="80"
-                          height="80"
-                          viewBox="0 0 64 64"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <circle
-                            cx="32"
-                            cy="32"
-                            r="30"
-                            fill="#3B82F6"
-                            stroke="#1D4ED8"
-                            strokeWidth="2"
-                          />
-                          <path d="M26 22L42 32L26 42V22Z" fill="white" />
-                        </svg>
-                      </button>
-                    </>
+                        <circle
+                          cx="32"
+                          cy="32"
+                          r="30"
+                          fill="#3B82F6"
+                          stroke="#1D4ED8"
+                          strokeWidth="2"
+                        />
+                        <path d="M26 22L42 32L26 42V22Z" fill="white" />
+                      </svg>
+                    </button>
                   )}
                 </div>
               )
             ) : (
               <div className="w-full aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
-                <p className="text-gray-400">No trailer available</p>
+                <p className="text-gray-400">No video available</p>
               </div>
             )}
           </div>
@@ -348,12 +475,12 @@ export default function ChosenMovie() {
           <div className="mt-10">
             <h2 className="text-2xl font-bold mb-4">Seasons</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
-              {seasonsArray.map(([seasonNumber, seasonData], index) => (
+              {seasonsArray.map(([seasonNumber, seasonData]) => (
                 <button
-                  key={index}
-                  onClick={() => setSelectedSeason(seasonNumber)}
+                  key={seasonNumber}
+                  onClick={() => handleSeasonSelect(seasonNumber)}
                   className={`p-4 text-center rounded-lg font-semibold transition-all ${
-                    selectedSeason === seasonNumber
+                    parseInt(selectedSeason) === parseInt(seasonNumber)
                       ? "bg-yellow-500 text-black shadow-lg scale-105"
                       : "bg-gray-800 hover:bg-gray-700"
                   }`}
@@ -372,20 +499,35 @@ export default function ChosenMovie() {
           <div className="mt-10">
             <h2 className="text-2xl font-bold mb-4">Episodes</h2>
             <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-4">
-              {Array.from({ length: currentSeason[1].episodes }, (_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelectedEpisode(i + 1)}
-                  className={`p-4 text-center rounded-lg font-semibold transition-all ${
-                    selevtedEpisode === i + 1
-                      ? "bg-yellow-500 text-black shadow-lg scale-105"
-                      : "bg-gray-800 hover:bg-gray-700"
-                  }`}
-                  
-                >
-                  Episode {i + 1}
-                </button>
-              ))}
+              {Array.from({ length: parseInt(currentSeason[1].episodes) }, (_, i) => {
+                const episodeNumber = i + 1;
+                const episodeTitle = currentSeason[1].episode_titles?.[i];
+                const hasClip = Boolean(currentSeason[1].episode_clips?.[i]);
+
+                return (
+                  <button
+                    key={`episode-${episodeNumber}`}
+                    onClick={() => handleEpisodeSelect(episodeNumber, episodeTitle)}
+                    className={`p-4 text-center rounded-lg font-semibold transition-all ${
+                      selevtedEpisode === episodeNumber
+                        ? "bg-yellow-500 text-black shadow-lg scale-105"
+                        : "bg-gray-800 hover:bg-gray-700"
+                    } ${!hasClip ? "opacity-70" : ""}`}
+                  >
+                    <div className="font-medium">Episode {episodeNumber}</div>
+                    {episodeTitle && (
+                      <div className="text-sm text-gray-400 mt-1 truncate">
+                        {episodeTitle}
+                      </div>
+                    )}
+                    {!hasClip && (
+                      <div className="text-xs text-yellow-400 mt-1">
+                        Trailer only
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}

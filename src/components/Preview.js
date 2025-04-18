@@ -1,20 +1,16 @@
 import { Link } from "react-router-dom";
 
-export default function PreviewMovie({ Movie, onClose }) {
+const PreviewMovie = ({ Movie, onClose }) => {
     if (!Movie) return null;
 
-    const isTvShow = Movie.id.includes("TV");
+    const isTvShow = Movie.type === "tv_show";
+    const numberOfSeasons = isTvShow ? Object.keys(Movie.seasons).length : 0;
 
     return (
-        // scroll
-        <div
-            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-            onClick={onClose}
-        >
-            <div
-                className="bg-gray-800 flex flex-row gap-8 p-6 rounded-2xl shadow-lg w-full max-w-3xl max-h-[90vh] relative"
-                onClick={(e) => e.stopPropagation()}
-            >
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+            onClick={onClose}>
+            <div className="bg-gray-800 flex flex-row gap-8 p-6 rounded-2xl shadow-lg w-full max-w-3xl max-h-[90vh] relative"
+                onClick={(e) => e.stopPropagation()}>
                 <img
                     src={Movie.thumbnail}
                     alt={Movie.title}
@@ -29,60 +25,51 @@ export default function PreviewMovie({ Movie, onClose }) {
                         <div className="mt-5 flex items-center gap-5 text-white">
                             <div className="flex items-center gap-2">
                                 <span className="text-gray-400">⭐ IMDb:</span>
-                                <span
-                                    className={`font-bold ${
-                                        Movie.imdbRating >= 8
-                                            ? 'text-green-400'
-                                            : 'text-yellow-400'
-                                    }`}
-                                >
-                                    {Movie.imdb_score}
+                                <span className={`font-bold ${
+                                    Movie.imdb_score >= 8 ? 'text-green-400' : 'text-yellow-400'
+                                }`}>
+                                    {Movie.imdb_score || 'N/A'}
                                 </span>
                             </div>
 
-                            <div className="flex items-center gap-2">
-                                <span className="text-gray-400">🎯 Metascore:</span>
-                                <span className="font-bold">{Movie.metascore}</span>
+                            {Movie.metascore && (
+                                <div className="flex items-center gap-2">
+                                    <span className="text-gray-400">🎯 Metascore:</span>
+                                    <span className="font-bold">{Movie.metascore}</span>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="mt-4">
+                            <div className="flex flex-wrap gap-2">
+                                {Movie.genre?.map((genre) => (
+                                    <span key={genre} 
+                                        className="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">
+                                        {genre}
+                                    </span>
+                                ))}
                             </div>
                         </div>
-                        <div>
-                            <span className="text-gray-400">Genres:</span>
-                            <span className="font-bold text-white ml-2">
-                                {Movie.genre.map((m)=>{
-                                    return (
-                                        <span key={m} className="mr-2 bg-gray-700 rounded px-2 py-1">
-                                            {m}
-                                        </span>
-                                    );
-                                })}
-                            </span>
-                        </div>
-                        {isTvShow && (
-                            <div className="mt-5 text-white">
-                                <h3 className="text-gray-400 text-lg font-medium mb-2 text-center">
-                                    Seasons
+
+                        {isTvShow && numberOfSeasons > 0 && (
+                            <div className="mt-5">
+                                <h3 className="text-gray-400 font-medium mb-2">
+                                    {numberOfSeasons} Seasons
                                 </h3>
-                                <div className="flex flex-wrap gap-3 justify-center">
-                                    {Object.entries(Movie.seasons).map(([seasonNumber, seasonData]) => (
-                                        <Link
-                                            key={seasonNumber}
-                                            className="w-24 bg-gray-800/80 hover:bg-gray-700/90 transition-all rounded-lg p-3 shadow-md flex flex-col items-center"
-                                        >
-                                            <span className="font-semibold text-sm">
-                                                Season {seasonNumber}
-                                            </span>
-                                            <div className="mt-1 flex items-center">
-                                                <span className="text-yellow-400">★</span>
-                                                <span className="text-sm ml-1">
-                                                    {seasonData.avg_rating
-                                                        ? seasonData.avg_rating.toFixed(1)
-                                                        : 'N/A'}
-                                                </span>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {Object.entries(Movie.seasons).slice(0, 6).map(([season, data]) => (
+                                        <div key={season} 
+                                            className="bg-gray-700 p-2 rounded text-center">
+                                            <div className="text-sm text-white">Season {season}</div>
+                                            <div className="text-xs text-gray-400">
+                                                {data.episodes} episodes
                                             </div>
-                                            <span className="text-xs text-gray-400 mt-1">
-                                                {seasonData.episodes} eps
-                                            </span>
-                                        </Link>
+                                            {data.avg_rating && (
+                                                <div className="text-yellow-400 text-xs">
+                                                    ★ {data.avg_rating}
+                                                </div>
+                                            )}
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -90,14 +77,10 @@ export default function PreviewMovie({ Movie, onClose }) {
                     </div>
 
                     <Link
-                        className="mt-5 bg-green-500 text-center text-white py-2 px-4 rounded-lg w-full hover:bg-green-700 transition"
-                        to={
-                            Movie.id.includes("MOV")
-                                ? `/movies/${Movie.id}`
-                                : `/tv-series/${Movie.id}`
-                        }
+                        className="mt-5 bg-blue-600 text-center text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+                        to={Movie.type === "movie" ? `/movies/${Movie.id}` : `/tv-series/${Movie.id}`}
                     >
-                        ▶
+                        View Details
                     </Link>
                 </div>
 
@@ -111,4 +94,6 @@ export default function PreviewMovie({ Movie, onClose }) {
             </div>
         </div>
     );
-}
+};
+
+export default PreviewMovie;
