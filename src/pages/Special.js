@@ -273,7 +273,7 @@ export default function Special() {
                   className="w-full h-full"
                   onClick={togglePlay}
                   poster={movie.thumbnail}
-                  src={movie.video_url}
+                  src={movie.trailer_url}
                 />
               ) : (
                 <div 
